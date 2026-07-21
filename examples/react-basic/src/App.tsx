@@ -1,9 +1,5 @@
-import { useEffect, useState } from "react";
+import {UserCard} from "./components/UserCard.tsx";
 
 export function App() {
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {}, []);
-
-  return <div>hi</div>;
+  return <UserCard />;
 }
