@@ -10,5 +10,8 @@
     "build": "npm run build --workspaces --if-present",
     "test": "npm run test --workspaces --if-present",
     "dev": "npm run dev --workspaces --if-present"
+  },
+  "devDependencies": {
+    "prettier": "3.9.6"
   }
 }

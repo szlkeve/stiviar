@@ -1,13 +1,13 @@
 @import "tailwindcss";
 
 .red-border {
-    border: 2px solid red;
+  border: 2px solid red;
 }
 
 .blue-border {
-    border: 2px solid blue;
+  border: 2px solid blue;
 }
 
 .green-border {
-    border: 2px solid green;
+  border: 2px solid green;
 }

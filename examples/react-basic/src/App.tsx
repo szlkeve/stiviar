@@ -1,8 +1,9 @@
+import { useEffect, useState } from "react";
+
 export function App() {
+  const [user, setUser] = useState(null);
 
-    return (
-        <div>hi</div>)
+  useEffect(() => {}, []);
+
+  return <div>hi</div>;
 }
-
-
-
