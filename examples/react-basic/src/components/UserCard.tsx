@@ -1,18 +1,8 @@
-import { useEffect, useState } from "react";
+import { useFetch } from "../lib/useFetch.ts";
+import { UserSchema } from "../lib/schemas.ts";
+import type { User } from "../lib/types.ts";
 
 export function UserCard() {
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    setLoading(true);
-    fetch("http://localhost:3001/api/user")
-      .then((user) => user.json())
-      .then((user) => setUser(user))
-      .catch((e) => setError(e))
-      .finally(() => setLoading(false));
-  }, []);
-
-  return <p>{JSON.stringify({ loading, error, user })}</p>;
+  const { error, loading, data } = useFetch<User>("/user", UserSchema);
+  return <p>{JSON.stringify({ loading, error, data })}</p>;
 }
