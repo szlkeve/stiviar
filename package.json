@@ -1,24 +1,13 @@
 {
-  "name": "api_model",
-  "version": "1.0.0",
-  "description": "",
-  "main": "dist/index.js",
+  "name": "my-lib-monorepo",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "examples/*"
+  ],
   "scripts": {
-    "build": "tsc",
-    "test": "vitest run",
-    "test:watch": "vitest"
-  },
-  "devDependencies": {
-    "@testing-library/jest-dom": "^7.0.0",
-    "@testing-library/react": "^16.3.2",
-    "@types/jest": "^30.0.0",
-    "@types/react": "^19.2.17",
-    "@types/react-dom": "^19.2.3",
-    "jsdom": "^29.1.1",
-    "react": "^19.2.8",
-    "react-dom": "^19.2.8",
-    "typescript": "^5.5.3",
-    "vitest": "^4.1.10"
-  },
-  "private": true
+    "build": "npm run build --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "dev": "npm run dev --workspaces --if-present"
+  }
 }
