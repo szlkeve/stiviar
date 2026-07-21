@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
 import { validate } from "./validate.ts";
 import z from "zod";
+import { QueryClient, useQuery } from "@tanstack/react-query";
 
 export function register<
   ApiTypeMap extends { [stateName: string]: { type: object } },
@@ -10,22 +10,23 @@ export function register<
     schema: z.ZodType<ApiTypeMap[NAME]["type"]>;
   };
 }) {
+  const client = new QueryClient();
   function useFetch<NAME extends keyof ApiTypeMap>(stateName: NAME) {
     type StateType = ApiTypeMap[NAME]["type"];
     const { url, schema } = apiModel[stateName];
-    const [data, setData] = useState<StateType | null>(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState<string | null>(null);
+    const { data, isLoading, error } = useQuery(
+      {
+        queryKey: [stateName],
+        queryFn: async (): Promise<StateType> => {
+          const res = await fetch(url);
+          const raw: unknown = await res.json();
+          return validate(schema, raw);
+        },
+      },
+      client,
+    );
 
-    useEffect(() => {
-      fetch(url)
-        .then((res) => res.json())
-        .then((data) => setData(validate(schema, data)))
-        .catch((e) => setError(String(e)))
-        .finally(() => setLoading(false));
-    }, [schema, url]);
-
-    return { error, loading, data };
+    return { data: data ?? null, loading: isLoading, error };
   }
   return { useFetch };
 }
