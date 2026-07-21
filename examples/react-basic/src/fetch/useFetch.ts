@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import type z from "zod";
+import { validate } from "./validate.ts";
 
 export function useFetch<T>(url: string, schema: z.ZodType<T>) {
   const [data, setData] = useState<T | null>(null);
@@ -15,10 +16,4 @@ export function useFetch<T>(url: string, schema: z.ZodType<T>) {
   }, [schema, url]);
 
   return { error, loading, data };
-}
-
-function validate<T>(schema: z.ZodType<T>, raw: unknown): T {
-  const result = schema.safeParse(raw);
-  if (result.success) return result.data;
-  throw new Error(`Invalid response shape: ${result.error.message}`);
 }
