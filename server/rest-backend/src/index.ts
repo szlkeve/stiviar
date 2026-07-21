@@ -12,4 +12,8 @@ app.get("/api/user", (_req, res) => {
   res.json({ id: 1, name: "John" });
 });
 
+app.get("/api/movies", (_req, res) => {
+  res.json([{ id: 1, title: "hi", year: 1998 }]);
+});
+
 app.listen(3001, () => console.log("REST backend on http://localhost:3001"));
