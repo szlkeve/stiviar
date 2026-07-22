@@ -1,9 +1,9 @@
 import type { Movies, User } from "../lib/types.ts";
 import { MoviesSchema, UserSchema } from "../lib/schemas.ts";
-import { register } from "./register.ts";
+import { register } from "@styviar/api_model";
 
 const BASE_URL = "http://localhost:3001/api";
-export const { useFetch } = register<{
+export const api = register<{
   user: { type: User };
   movies: { type: Movies };
 }>({
@@ -16,3 +16,5 @@ export const { useFetch } = register<{
     schema: MoviesSchema,
   },
 });
+
+export const useFetch = api.useFetch;
