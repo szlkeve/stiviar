@@ -1,32 +1,8 @@
 import { renderHook } from "@testing-library/react";
 import { register } from "./register";
-import { z } from "zod";
+import { Movies, User } from "./lib/types";
+import { MoviesSchema, UserSchema } from "./lib/schemas";
 
-export type User = {
-  id: number;
-  name: string;
-};
-
-export type Movie = {
-  id: number;
-  title: string;
-  year: number;
-};
-
-export type Movies = Movie[];
-
-export const UserSchema: z.ZodType<User> = z.object({
-  id: z.number(),
-  name: z.string(),
-});
-
-export const MovieSchema: z.ZodType<Movie> = z.object({
-  id: z.number(),
-  title: z.string(),
-  year: z.number(),
-});
-
-export const MoviesSchema: z.ZodType<Movies> = z.array(MovieSchema);
 const BASE_URL = "http://localhost:3001/api";
 
 describe("useCounter", () => {
