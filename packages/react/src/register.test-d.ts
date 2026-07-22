@@ -6,8 +6,11 @@ const userUrl = BASE_URL + "/user";
 describe("register type tests", () => {
   it("throws error on type - schema mismatch", () => {
     register<{ user: { type: { name_1: string } } }>({
-      // @ts-ignore
-      user: { url: userUrl, schema: UserSchema },
+      user: {
+        url: userUrl,
+        // @ts-expect-error - expect type error on type - schema mismatch
+        schema: UserSchema,
+      },
     });
   });
 });
