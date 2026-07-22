@@ -1,4 +1,4 @@
-import { useFetch } from "../fetch/useFetch.ts";
+import { useFetch } from "../lib/useFetch.ts";
 
 export function MoviesCard() {
   const state = useFetch("movies");

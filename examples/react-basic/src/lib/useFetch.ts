@@ -1,5 +1,5 @@
-import type { Movies, User } from "../lib/types.ts";
-import { MoviesSchema, UserSchema } from "../lib/schemas.ts";
+import type { Movies, User } from "./types.ts";
+import { MoviesSchema, UserSchema } from "./schemas.ts";
 import { register } from "@styviar/api_model";
 
 const BASE_URL = "http://localhost:3001/api";
