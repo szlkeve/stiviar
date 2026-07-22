@@ -1,6 +1,6 @@
 import z from "zod";
-import {QueryClient, useQuery} from "@tanstack/react-query";
-import {validate} from "./validate";
+import { QueryClient, useQuery } from "@tanstack/react-query";
+import { validate } from "./lib/validate";
 
 export function register<
   ApiTypeMap extends { [stateName: string]: { type: object } },
