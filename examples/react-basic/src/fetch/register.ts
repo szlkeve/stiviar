@@ -25,8 +25,8 @@ export function register<
       },
       client,
     );
-
-    return { data: data ?? null, loading: isLoading, error };
+    const dataWithType: StateType | undefined = data;
+    return { data: dataWithType, loading: isLoading, error };
   }
   return { useFetch };
 }
