@@ -1,4 +1,4 @@
-import { register } from "./register";
+import { register } from "../register";
 import { UserSchema } from "./lib/schemas";
 
 const BASE_URL = "http://localhost:3001/api";
