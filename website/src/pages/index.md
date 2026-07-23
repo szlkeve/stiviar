@@ -10,49 +10,26 @@ slug: /
 
 **A fully decoupled, declarative, type-safe API layer for your frontend.**
 
-<div className="row">
-<div className="col col--6">
 
-```tsx
-export const api = register<{
-  user: { type: User };
-  movies: { type: Movies };
-}>({
-  user: {
-    url: BASE_URL + "/user",
-    schema: UserSchema,
-  },
-  movies: {
-    url: BASE_URL + "/movies",
-    schema: MoviesSchema,
-  },
-});
+<video
+src="/videos/type_demo.mp4"
+autoPlay
+muted
+loop
+playsInline
+controls
+style={{ width: "100%", borderRadius: "8px", marginTop: "1rem" }}
+>
+Your browser does not support the video tag.
+</video>
 
-export const useFetch = api.useFetch;
-```
 
-</div>
-<div className="col col--6">
 
-```tsx
-function Settings() {
-  const state = useFetch("user");
-  return <p>Settings for {state.data?.name}</p>;
-}
-```
-
-</div>
-</div>
-
-That's the whole integration. `state.data` is fully typed as `User | null`, validated against `UserSchema` at runtime, cached, and automatically re-fetched or shared across every component that calls `useFetch("user")`.
-
----
 
 ## Why this exists
 
-Every frontend team eventually writes the same brittle layer by hand: a `fetch` call, a `.json()` cast to `any`, a loading flag, an error flag, and a silent hope that the backend didn't change shape overnight. Type-safe API clients like tRPC and oRPC solve part of this — but only if your backend is TypeScript, in the same monorepo, and willing to couple its release cycle to your frontend's. oRPC loosens this slightly by exporting an OpenAPI spec so non-TS clients can call in, but the backend implementation itself is still tied to TypeScript.
 
-This library takes a different approach: **the contract lives on the frontend, and the backend can be anything.**
+
 
 ## What you get
 
