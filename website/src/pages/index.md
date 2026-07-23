@@ -4,11 +4,11 @@ description: Define your app's API contract once — types, validation, and URLs
 slug: /
 ---
 
-# Stop wiring up fetch calls. Start declaring your API model.
+
+
+# Lightweight type wrapper around your API endpoint 
 
 **A fully decoupled, declarative, type-safe API layer for your frontend.**
-
-Define the shape of your app's data once — a type, a validation schema, and a URL — and get automatic type safety, runtime validation, caching, and error handling for free. No backend coupling. No codegen step. No versioning. No language lock-in. Set up in minutes, with almost nothing new to learn.
 
 <div className="row">
 <div className="col col--6">

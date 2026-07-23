@@ -1,8 +1,8 @@
 import type { Movies, User } from "./types.ts";
 import { MoviesSchema, UserSchema } from "./schemas.ts";
 import { register } from "@styviar/api_model";
+import { BASE_URL } from "./constants.ts";
 
-const BASE_URL = "http://localhost:3001/api";
 export const api = register<{
   user: { type: User };
   movies: { type: Movies };
