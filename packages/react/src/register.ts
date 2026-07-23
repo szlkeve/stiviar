@@ -4,12 +4,19 @@ import { validate } from "./lib/validate";
 
 export function register<
   ApiTypeMap extends { [stateName: string]: { type: object } },
->(apiModel: {
-  [NAME in keyof ApiTypeMap]: {
-    url: string;
-    schema: z.ZodType<ApiTypeMap[NAME]["type"]>;
-  };
-}) {
+>(
+  apiModel: {
+    [NAME in keyof ApiTypeMap]: {
+      url: string;
+      schema: z.ZodType<ApiTypeMap[NAME]["type"]>;
+    };
+  },
+  fetchFunction: (url: string) => Promise<unknown> = async (url: string) => {
+    const res = await fetch(url);
+    const resJson: unknown = await res.json();
+    return resJson;
+  },
+) {
   const client = new QueryClient();
   function useFetch<NAME extends keyof ApiTypeMap>(stateName: NAME) {
     type StateType = ApiTypeMap[NAME]["type"];
@@ -18,9 +25,8 @@ export function register<
       {
         queryKey: [stateName],
         queryFn: async (): Promise<StateType> => {
-          const res = await fetch(url);
-          const raw: unknown = await res.json();
-          return validate(schema, raw);
+          const res = await fetchFunction(url);
+          return validate(schema, res);
         },
       },
       client,

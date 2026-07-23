@@ -5,20 +5,21 @@ import { MoviesSchema, UserSchema } from "./lib/schemas";
 
 const BASE_URL = "http://localhost:3001/api";
 
+const { useFetch } = register<{
+  user: { type: User };
+  movies: { type: Movies };
+}>({
+  user: {
+    url: BASE_URL + "/user",
+    schema: UserSchema,
+  },
+  movies: {
+    url: BASE_URL + "/movies",
+    schema: MoviesSchema,
+  },
+});
+
 describe("useCounter", () => {
-  const { useFetch } = register<{
-    user: { type: User };
-    movies: { type: Movies };
-  }>({
-    user: {
-      url: BASE_URL + "/user",
-      schema: UserSchema,
-    },
-    movies: {
-      url: BASE_URL + "/movies",
-      schema: MoviesSchema,
-    },
-  });
   it("initializes with default value", () => {
     const { result } = renderHook(() => useFetch("user"));
     expect(result.current.data).toBe(undefined);
