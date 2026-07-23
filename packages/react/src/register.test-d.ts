@@ -8,9 +8,28 @@ describe("register type tests", () => {
     register<{ user: { type: { name_1: string } } }>({
       user: {
         url: userUrl,
-        // @ts-expect-error - expect type error on type - schema mismatch
+        // @ts-expect-error - type - schema mismatch
         schema: UserSchema,
       },
     });
+  });
+  it("throws error on statename mismatch", () => {
+    register<{ user: { type: { name: string } } }>({
+      // @ts-expect-error - state name mismatch
+      user_1: {
+        url: userUrl,
+        schema: UserSchema,
+      },
+    });
+  });
+  it("throws error on statename mismatch", () => {
+    const { useFetch } = register<{ user: { type: { name: string } } }>({
+      user: {
+        url: userUrl,
+        schema: UserSchema,
+      },
+    });
+    // @ts-expect-error - state name reference
+    useFetch("user_1");
   });
 });
