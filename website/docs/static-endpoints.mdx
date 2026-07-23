@@ -1,0 +1,68 @@
+---
+id: static-endpoints
+title: Static Endpoints
+sidebar_position: 4
+---
+
+# Static Endpoints
+
+A static endpoint is one with a fixed URL — no path parameters, no query parameters that change per call. This is the simplest kind of registration, and the one covered in [Getting Started](./getting-started).
+
+## Registering multiple static endpoints
+
+```ts
+// api.ts
+import { register } from "your-lib-name";
+import type { User, Movie } from "./types";
+import { UserSchema, MoviesSchema } from "./schemas";
+
+const BASE_URL = "http://localhost:3001/api";
+
+export const api = register<{
+  user: { type: User };
+  movies: { type: Movie[] };
+}>({
+  user: {
+    url: BASE_URL + "/user",
+    schema: UserSchema,
+  },
+  movies: {
+    url: BASE_URL + "/movies",
+    schema: MoviesSchema,
+  },
+});
+
+export const useFetch = api.useFetch;
+```
+
+## Consuming them
+
+```tsx
+function Dashboard() {
+  const { data: user } = useFetch("user");
+  const { data: movies } = useFetch("movies");
+
+  return (
+    <div>
+      <p>Welcome, {user?.name}</p>
+      <ul>
+        {movies?.map((movie) => (
+          <li key={movie.id}>{movie.title}</li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+```
+
+## Caching behavior
+
+Static endpoints are cached by their state name. Calling `useFetch("user")` from ten different components results in a single shared request and a single shared cache entry — not ten separate fetches.
+
+## When to reach for something else
+
+If your endpoint's URL needs to change based on a variable — an ID, a search term, a page number — a static endpoint isn't the right fit. See:
+
+- [Dynamic Endpoints](./dynamic-endpoints) for path/query parameters supplied at call time.
+- [Paginated Endpoints](./paginated-endpoints) for page-based data.
+- [OData Endpoints](./odata-endpoints) for `$filter`/`$orderby`/`$top`/`$skip` query support.

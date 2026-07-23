@@ -1,0 +1,88 @@
+---
+id: getting-started
+title: Getting Started
+sidebar_position: 3
+---
+
+# Getting Started
+
+This walks through registering a single API state end to end: a type, a schema, a URL, and a component that consumes it.
+
+## 1. Define your type
+
+```ts
+// types.ts
+export interface User {
+  id: number;
+  name: string;
+}
+```
+
+## 2. Define your validation schema
+
+The schema is annotated against your type, so if the schema and the type ever drift apart, TypeScript catches it at compile time.
+
+```ts
+// schemas.ts
+import { z } from "zod";
+import type { User } from "./types";
+
+export const UserSchema: z.ZodType<User> = z.object({
+  id: z.number(),
+  name: z.string(),
+});
+```
+
+## 3. Register your API model
+
+```ts
+// api.ts
+import { register } from "your-lib-name";
+import type { User } from "./types";
+import { UserSchema } from "./schemas";
+
+const BASE_URL = "http://localhost:3001/api";
+
+export const api = register<{
+  user: { type: User };
+}>({
+  user: {
+    url: BASE_URL + "/user",
+    schema: UserSchema,
+  },
+});
+
+export const useFetch = api.useFetch;
+```
+
+## 4. Use it in a component
+
+```tsx
+// Settings.tsx
+import { useFetch } from "./api";
+
+export function Settings() {
+  const { data, isLoading, error } = useFetch("user");
+
+  if (isLoading) return <p>Loading...</p>;
+  if (error) return <p>Something went wrong: {error.message}</p>;
+
+  return <p>Settings for {data?.name}</p>;
+}
+```
+
+That's the whole setup. No provider to wrap your app in, no codegen step, no separate client instance to configure.
+
+## What you get automatically
+
+- **`data`** is typed as `User | undefined` — no manual casting, no `any`.
+- **`isLoading`** tracks the fetch lifecycle for you.
+- **`error`** is a `MineError` with a `code` you can branch on (see [Errors](./intro#the-core-idea) for the full list of codes).
+- The response is validated against `UserSchema` before it ever reaches your component — if the backend's shape changes, you get a clear validation error instead of a silent bug.
+
+## Next steps
+
+- [Static Endpoints](./static-endpoints) — more on registering fixed-URL endpoints like the one above.
+- [Dynamic Endpoints](./dynamic-endpoints) — endpoints that need an ID or query param supplied at call time.
+- [Paginated Endpoints](./paginated-endpoints) — endpoints that return data a page at a time.
+- [OData Endpoints](./odata-endpoints) — endpoints with `$filter`/`$orderby`/`$top`/`$skip` support.

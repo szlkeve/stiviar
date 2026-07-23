@@ -1,47 +1,53 @@
 ---
+id: intro
+title: Introduction
 sidebar_position: 1
 ---
 
-# Tutorial Intro
+# Introduction
 
-Let's discover **Docusaurus in less than 5 minutes**.
+This library is a fully decoupled, declarative, type-safe API layer for your frontend.
 
-## Getting Started
+You define the shape of your app's data once — a type, a validation schema, and a URL — and get automatic type safety, runtime validation, caching, and error handling for free. There's no codegen step, no versioning, no schema registry, and no requirement that your backend even be written in the same language as your frontend.
 
-Get started by **creating a new site**.
+## The core idea
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
+Every API state your app cares about is registered once, up front:
 
-### What you'll need
+```tsx
+export const api = register<{
+  user: { type: User };
+  movies: { type: Movies };
+}>({
+  user: {
+    url: "/user",
+    schema: UserSchema,
+  },
+  movies: {
+    url: "/movies",
+    schema: MoviesSchema,
+  },
+});
 
-- [Node.js](https://nodejs.org/en/download/) version 20.0 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
-
-## Generate a new site
-
-Generate a new Docusaurus site using the **classic template**.
-
-The classic template will automatically be added to your project after you run the command:
-
-```bash
-npm init docusaurus@latest my-website classic
+export const useFetch = api.useFetch;
 ```
 
-You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
+From then on, any component can consume that state with full type safety and zero boilerplate:
 
-The command also installs all necessary dependencies you need to run Docusaurus.
-
-## Start your site
-
-Run the development server:
-
-```bash
-cd my-website
-npm run start
+```tsx
+function Settings() {
+  const { data, isLoading, error } = useFetch("user");
+  return <p>Settings for {data?.name}</p>;
+}
 ```
 
-The `cd` command changes the directory you're working with. In order to work with your newly created Docusaurus site, you'll need to navigate the terminal there.
+`data` is typed as `User | undefined`, validated at runtime against `UserSchema`, cached, and shared across every component that calls `useFetch("user")`.
 
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
+## What's covered in these docs
 
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.
+- **[Installation](./installation)** — getting the library and its peer dependencies installed.
+- **[Getting Started](./getting-started)** — your first registered state, end to end.
+- **[Static Endpoints](./static-endpoints)** — endpoints with a fixed URL.
+- **[Dynamic Endpoints](./dynamic-endpoints)** — endpoints that need path or query parameters at call time.
+- **[Paginated Endpoints](./paginated-endpoints)** — endpoints that return data a page at a time.
+- **[OData Endpoints](./odata-endpoints)** — endpoints that support OData-style `$filter`, `$orderby`, `$top`, and `$skip` query construction.
