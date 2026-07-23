@@ -42,3 +42,15 @@
   --ifm-hero-background-color: #10141a;
   --ifm-hero-text-color: #ecebe6;
 }
+
+.red-border {
+  border: 2px solid red;
+}
+
+.green-border {
+  border: 2px solid green;
+}
+
+.blue-border {
+  border: 2px solid blue;
+}
