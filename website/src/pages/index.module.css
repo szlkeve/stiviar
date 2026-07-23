@@ -1,0 +1,349 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap");
+
+.root {
+  --bg: #10141a;
+  --bg-elevated: #171c24;
+  --text-primary: #ecebe6;
+  --text-secondary: #97a1ad;
+  --accent-teal: #5eead4;
+  --accent-amber: #f2a65a;
+  --border: #262c36;
+  --font-display: "Space Grotesk", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  background: var(--bg);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  line-height: 1.6;
+}
+
+.root :global(a) {
+  color: inherit;
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 5rem 2rem 4rem;
+}
+
+@media (max-width: 996px) {
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 3rem 1.5rem 2.5rem;
+  }
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  color: var(--accent-teal);
+  margin-bottom: 1rem;
+}
+
+.headline {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2.1rem, 4vw, 3.2rem);
+  line-height: 1.1;
+  margin: 0 0 1.2rem;
+  color: var(--text-primary);
+}
+
+.subtitle {
+  font-size: 1.15rem;
+  color: var(--text-secondary);
+  max-width: 34rem;
+  margin: 0 0 2rem;
+}
+
+.heroActions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.primaryButton,
+.secondaryButton {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.primaryButton {
+  background: var(--accent-teal);
+  color: #0b1f1c;
+  font-weight: 600;
+  border: 1px solid var(--accent-teal);
+}
+
+.primaryButton:hover {
+  transform: translateY(-1px);
+  background: #7cf3de;
+  border-color: #7cf3de;
+  color: #0b1f1c;
+  text-decoration: none;
+}
+
+.secondaryButton {
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+}
+
+.secondaryButton:hover {
+  border-color: var(--accent-teal);
+  color: var(--accent-teal);
+  transform: translateY(-1px);
+  text-decoration: none;
+}
+
+.primaryButton:focus-visible,
+.secondaryButton:focus-visible {
+  outline: 2px solid var(--accent-teal);
+  outline-offset: 2px;
+}
+
+/* ---------- Demo frame ---------- */
+
+.demoFrame {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.demoFrameBar {
+  display: flex;
+  gap: 0.4rem;
+  padding: 0.65rem 0.9rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--border);
+}
+
+.dot[data-color="red"] {
+  background: #e5675f;
+}
+
+.dot[data-color="yellow"] {
+  background: #e5b75f;
+}
+
+.dot[data-color="green"] {
+  background: #5fbf7a;
+}
+
+.demoVideo {
+  display: block;
+  width: 100%;
+}
+
+/* ---------- Why this exists ---------- */
+
+.explainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  border-top: 1px solid var(--border);
+}
+
+@media (max-width: 996px) {
+  .explainer {
+    grid-template-columns: 1fr;
+    padding: 3rem 1.5rem;
+  }
+}
+
+.explainerText h2 {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  margin: 0 0 1rem;
+  color: var(--text-primary);
+}
+
+.explainerText p {
+  color: var(--text-secondary);
+  margin: 0 0 1rem;
+}
+
+.explainerText code {
+  font-family: var(--font-mono);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 0.1rem 0.4rem;
+  color: var(--accent-teal);
+}
+
+.explainerText strong {
+  color: var(--text-primary);
+}
+
+.diagram {
+  justify-self: center;
+}
+
+/* ---------- Feature grid ---------- */
+
+.features {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  border-top: 1px solid var(--border);
+}
+
+.sectionHeading {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  margin: 0 0 2rem;
+  text-align: center;
+  color: var(--text-primary);
+}
+
+.featureGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+@media (max-width: 996px) {
+  .featureGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .featureGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.featureCard {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.5rem;
+}
+
+.featureTag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  color: var(--accent-amber);
+  margin-bottom: 0.75rem;
+}
+
+.featureCard h3 {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  margin: 0 0 0.5rem;
+  color: var(--text-primary);
+}
+
+.featureCard p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+/* ---------- Comparison table ---------- */
+
+.comparison {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  border-top: 1px solid var(--border);
+}
+
+.tableWrap {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  min-width: 760px;
+}
+
+.table th,
+.table td {
+  padding: 0.85rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+.table thead th {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  color: var(--text-secondary);
+  background: var(--bg-elevated);
+}
+
+.table tbody th[scope="row"] {
+  font-family: var(--font-mono);
+  color: var(--text-primary);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.table tbody td {
+  color: var(--text-secondary);
+}
+
+.table tbody tr:nth-child(odd) {
+  background: rgba(255, 255, 255, 0.015);
+}
+
+.table tbody tr:last-child td,
+.table tbody tr:last-child th {
+  border-bottom: none;
+}
+
+/* ---------- CTA ---------- */
+
+.cta {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 5rem 2rem 6rem;
+  text-align: center;
+  border-top: 1px solid var(--border);
+}
+
+.cta h2 {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  margin: 0 0 1rem;
+  color: var(--text-primary);
+}
+
+.cta p {
+  color: var(--text-secondary);
+  margin: 0 0 2rem;
+}

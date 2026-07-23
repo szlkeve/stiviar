@@ -1,0 +1,75 @@
+.diagram {
+  width: 100%;
+  height: auto;
+  max-width: 460px;
+  overflow: visible;
+}
+
+.line {
+  stroke: var(--accent-teal);
+  stroke-width: 2;
+  fill: none;
+}
+
+.lineDashed {
+  stroke: var(--accent-amber);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 6;
+  fill: none;
+  opacity: 0.75;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .lineDashed {
+    animation: flow 7s linear infinite;
+  }
+}
+
+@keyframes flow {
+  to {
+    stroke-dashoffset: -100;
+  }
+}
+
+.boxFrontend {
+  fill: var(--bg-elevated);
+  stroke: var(--border);
+  stroke-width: 1.5;
+}
+
+.boxContract {
+  fill: var(--bg-elevated);
+  stroke: var(--accent-teal);
+  stroke-width: 2;
+}
+
+.boxBackend {
+  fill: var(--bg-elevated);
+  stroke: var(--accent-amber);
+  stroke-width: 1.5;
+}
+
+.boxLabel {
+  fill: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 13px;
+}
+
+.contractTitle {
+  fill: var(--text-primary);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.contractLine {
+  fill: var(--accent-teal);
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+.backendLabel {
+  fill: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 13px;
+}
