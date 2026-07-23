@@ -1,7 +1,7 @@
 import z from "zod";
 import { QueryClient, useQuery } from "@tanstack/react-query";
 import { validate } from "./lib/validate";
-import { defaultFetchFunction } from "./lib/defaultFetchFunction";
+import { defaultFetchFn } from "./lib/defaultFetchFn";
 
 export function register<
   ApiTypeMap extends { [stateName: string]: { type: object } },
@@ -12,7 +12,7 @@ export function register<
       schema: z.ZodType<ApiTypeMap[NAME]["type"]>;
     };
   },
-  fetchFunction = defaultFetchFunction,
+  fetchFn = defaultFetchFn,
 ) {
   const client = new QueryClient();
   function useFetch<NAME extends keyof ApiTypeMap>(stateName: NAME) {
@@ -20,7 +20,7 @@ export function register<
     const { url, schema } = apiModel[stateName];
     const queryKey = [stateName];
     const queryFn = async (): Promise<StateType> =>
-      validate(schema, await fetchFunction(url));
+      validate(schema, await fetchFn(url));
     const { data, isLoading, error } = useQuery({ queryKey, queryFn }, client);
     const dataWithType: StateType | undefined = data;
     return { data: dataWithType, isLoading, error };
