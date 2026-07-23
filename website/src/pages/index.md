@@ -10,17 +10,20 @@ slug: /
 
 Define the shape of your app's data once — a type, a validation schema, and a URL — and get automatic type safety, runtime validation, caching, and error handling for free. No backend coupling. No codegen step tied to a specific server. No language lock-in.
 
+<div className="row">
+<div className="col col--6">
+
 ```tsx
 export const api = register<{
   user: { type: User };
   movies: { type: Movies };
 }>({
   user: {
-    url: "api/user",
+    url: BASE_URL + "/user",
     schema: UserSchema,
   },
   movies: {
-    url: "api/movies",
+    url: BASE_URL + "/movies",
     schema: MoviesSchema,
   },
 });
@@ -28,12 +31,18 @@ export const api = register<{
 export const useFetch = api.useFetch;
 ```
 
+</div>
+<div className="col col--6">
+
 ```tsx
 function Settings() {
   const state = useFetch("user");
   return <p>Settings for {state.data?.name}</p>;
 }
 ```
+
+</div>
+</div>
 
 That's the whole integration. `state.data` is fully typed as `User | null`, validated against `UserSchema` at runtime, cached, and automatically re-fetched or shared across every component that calls `useFetch("user")`.
 
