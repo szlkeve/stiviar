@@ -1,5 +1,7 @@
+import clsx from "clsx";
 import Layout from "@theme/Layout";
 import Link from "@docusaurus/Link";
+import Heading from "@theme/Heading";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import { ContractDiagram } from "../components/ContractDiagram";
 import styles from "./index.module.css";
@@ -20,8 +22,7 @@ const FEATURES = [
   {
     tag: "CACHE",
     title: "Built-in caching",
-    description:
-      "Call the same state from ten components; one request, one shared cache entry.",
+    description: "Call the same state from ten components; one request, one shared cache entry.",
   },
   {
     tag: "STATE",
@@ -120,7 +121,7 @@ const COMPARISON_ROWS = [
   },
 ] as const;
 
-export default function Home() {
+export default function Home(): JSX.Element {
   const videoSrc = useBaseUrl("/videos/type_demo.mp4");
 
   return (
@@ -128,27 +129,31 @@ export default function Home() {
       title="A typesafe, decoupled API layer for your frontend"
       description="Define your app's API contract once — types, validation, and URLs — and never think about data fetching again."
     >
-      <div className={styles.root}>
-        <section className={styles.hero}>
-          <div className={styles.heroText}>
-            <p className={styles.eyebrow}>ONE CONTRACT. ANY BACKEND.</p>
-            <h1 className={styles.headline}>
-              Lightweight type wrapper around your API endpoint
-            </h1>
-            <p className={styles.subtitle}>
-              A fully decoupled, declarative, type-safe API layer for your
-              frontend.
-            </p>
-            <div className={styles.heroActions}>
-              <Link className={styles.primaryButton} to="/docs/getting-started">
-                Get started
-              </Link>
-              <Link className={styles.secondaryButton} to="/docs/intro">
-                Read the docs
-              </Link>
-            </div>
+      <header className={clsx("hero", styles.heroBanner)}>
+        <div className="container">
+          <p className={styles.eyebrow}>ONE CONTRACT. ANY BACKEND.</p>
+          <Heading as="h1" className="hero__title">
+            Lightweight type wrapper around your API endpoint
+          </Heading>
+          <p className="hero__subtitle">
+            A fully decoupled, declarative, type-safe API layer for your frontend.
+          </p>
+          <div className="margin-top--lg">
+            <Link
+              className="button button--primary button--lg margin-right--md"
+              to="/docs/getting-started"
+            >
+              Get started
+            </Link>
+            <Link className="button button--outline button--secondary button--lg" to="/docs/intro">
+              Read the docs
+            </Link>
           </div>
+        </div>
+      </header>
 
+      <main>
+        <section className="container margin-vert--xl">
           <div className={styles.demoFrame}>
             <div className={styles.demoFrameBar}>
               <span className={styles.dot} data-color="red" />
@@ -169,47 +174,60 @@ export default function Home() {
           </div>
         </section>
 
-        <section className={styles.explainer}>
-          <div className={styles.explainerText}>
-            <h2>Why this exists</h2>
-            <p>
-              Every frontend team eventually writes the same brittle layer by
-              hand: a fetch call, a response cast to <code>any</code>, a loading
-              flag, an error flag, and a silent hope that the backend didn't
-              change shape overnight.
-            </p>
-            <p>
-              Type-safe API clients like tRPC and oRPC solve part of this — but
-              only if your backend is TypeScript, in the same monorepo, and
-              willing to couple its release cycle to your frontend's.
-            </p>
-            <p>
-              <strong>
-                This library takes a different approach: the contract lives on
-                the frontend, and the backend can be anything.
-              </strong>
-            </p>
+        <section className="container margin-vert--xl">
+          <div className="row row--align-center">
+            <div className="col col--6">
+              <Heading as="h2">Why this exists</Heading>
+              <p>
+                Every frontend team eventually writes the same brittle layer by hand: a fetch
+                call, a response cast to <code>any</code>, a loading flag, an error flag, and a
+                silent hope that the backend didn't change shape overnight.
+              </p>
+              <p>
+                Type-safe API clients like tRPC and oRPC solve part of this — but only if your
+                backend is TypeScript, in the same monorepo, and willing to couple its release
+                cycle to your frontend's.
+              </p>
+              <p>
+                <strong>
+                  This library takes a different approach: the contract lives on the frontend,
+                  and the backend can be anything.
+                </strong>
+              </p>
+            </div>
+            <div className="col col--6 text--center">
+              <ContractDiagram className={styles.diagram} />
+            </div>
           </div>
-          <ContractDiagram className={styles.diagram} />
         </section>
 
-        <section className={styles.features}>
-          <h2 className={styles.sectionHeading}>What you get</h2>
-          <div className={styles.featureGrid}>
+        <section className="container margin-vert--xl">
+          <Heading as="h2" className="text--center margin-bottom--lg">
+            What you get
+          </Heading>
+          <div className="row">
             {FEATURES.map((feature) => (
-              <div key={feature.tag} className={styles.featureCard}>
-                <span className={styles.featureTag}>{feature.tag}</span>
-                <h3>{feature.title}</h3>
-                <p>{feature.description}</p>
+              <div key={feature.tag} className="col col--4 margin-bottom--lg">
+                <div className="card" style={{ height: "100%" }}>
+                  <div className="card__header">
+                    <span className={styles.featureTag}>{feature.tag}</span>
+                    <Heading as="h3">{feature.title}</Heading>
+                  </div>
+                  <div className="card__body">
+                    <p>{feature.description}</p>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
         </section>
 
-        <section className={styles.comparison}>
-          <h2 className={styles.sectionHeading}>How it compares</h2>
+        <section className="container margin-vert--xl">
+          <Heading as="h2" className="text--center margin-bottom--lg">
+            How it compares
+          </Heading>
           <div className={styles.tableWrap}>
-            <table className={styles.table}>
+            <table>
               <thead>
                 <tr>
                   <th />
@@ -234,17 +252,17 @@ export default function Home() {
           </div>
         </section>
 
-        <section className={styles.cta}>
-          <h2>Ready to stop writing the same data-fetching boilerplate?</h2>
+        <section className="container margin-vert--xl padding-vert--xl text--center">
+          <Heading as="h2">Ready to stop writing the same data-fetching boilerplate?</Heading>
           <p>
-            Head to the Getting Started guide to install the library and define
-            your first API model in under five minutes.
+            Head to the Getting Started guide to install the library and define your first API
+            model in under five minutes.
           </p>
-          <Link className={styles.primaryButton} to="/docs/getting-started">
+          <Link className="button button--primary button--lg" to="/docs/getting-started">
             Get started
           </Link>
         </section>
-      </div>
+      </main>
     </Layout>
   );
 }

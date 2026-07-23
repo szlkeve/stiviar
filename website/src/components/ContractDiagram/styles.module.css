@@ -6,13 +6,13 @@
 }
 
 .line {
-  stroke: var(--accent-teal);
+  stroke: var(--ifm-color-primary);
   stroke-width: 2;
   fill: none;
 }
 
 .lineDashed {
-  stroke: var(--accent-amber);
+  stroke: #f2a65a;
   stroke-width: 1.5;
   stroke-dasharray: 4 6;
   fill: none;
@@ -32,44 +32,44 @@
 }
 
 .boxFrontend {
-  fill: var(--bg-elevated);
-  stroke: var(--border);
+  fill: var(--ifm-card-background-color, var(--ifm-background-surface-color));
+  stroke: var(--ifm-color-emphasis-300);
   stroke-width: 1.5;
 }
 
 .boxContract {
-  fill: var(--bg-elevated);
-  stroke: var(--accent-teal);
+  fill: var(--ifm-card-background-color, var(--ifm-background-surface-color));
+  stroke: var(--ifm-color-primary);
   stroke-width: 2;
 }
 
 .boxBackend {
-  fill: var(--bg-elevated);
-  stroke: var(--accent-amber);
+  fill: var(--ifm-card-background-color, var(--ifm-background-surface-color));
+  stroke: #f2a65a;
   stroke-width: 1.5;
 }
 
 .boxLabel {
-  fill: var(--text-secondary);
-  font-family: var(--font-mono);
+  fill: var(--ifm-color-emphasis-700);
+  font-family: var(--ifm-font-family-monospace);
   font-size: 13px;
 }
 
 .contractTitle {
-  fill: var(--text-primary);
-  font-family: var(--font-display);
+  fill: var(--ifm-heading-color, var(--ifm-font-color-base));
+  font-family: var(--ifm-heading-font-family);
   font-weight: 700;
   font-size: 15px;
 }
 
 .contractLine {
-  fill: var(--accent-teal);
-  font-family: var(--font-mono);
+  fill: var(--ifm-color-primary);
+  font-family: var(--ifm-font-family-monospace);
   font-size: 12px;
 }
 
 .backendLabel {
-  fill: var(--text-primary);
-  font-family: var(--font-mono);
+  fill: var(--ifm-heading-color, var(--ifm-font-color-base));
+  font-family: var(--ifm-font-family-monospace);
   font-size: 13px;
 }
