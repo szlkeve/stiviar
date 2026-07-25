@@ -12,8 +12,7 @@ export function register<ApiTypeMap extends BaseApiTypeMap>(
     defaultOptions: {
       queries: {
         retry: (failureCount, error) => {
-          if (error instanceof ApiError && error.code === "VALIDATION_ERROR")
-            return false;
+          if (error instanceof ApiError) return false;
           return failureCount < 3;
         },
       },
