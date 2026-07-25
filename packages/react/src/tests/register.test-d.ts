@@ -46,7 +46,7 @@ describe("register type tests", () => {
     register<{ user: { type: { name: string } } }>({
       user: {
         // @ts-expect-error - url must be a string when no params are declared, not a function
-        url: (params: { id: number }) => userUrl,
+        url: (params: { id: number }) => userUrl + params.id,
         schema: UserSchema,
       },
     });
