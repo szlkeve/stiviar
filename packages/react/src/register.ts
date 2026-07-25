@@ -2,12 +2,23 @@ import { QueryClient, useQuery } from "@tanstack/react-query";
 import { validate } from "./lib/validate";
 import { defaultFetchFn } from "./lib/defaultFetchFn";
 import { ApiModel, BaseApiTypeMap } from "./lib/types";
+import { ApiError } from "./errors";
 
 export function register<ApiTypeMap extends BaseApiTypeMap>(
   apiModel: ApiModel<ApiTypeMap>,
   fetchFn = defaultFetchFn,
 ) {
-  const client = new QueryClient();
+  const client = new QueryClient({
+    defaultOptions: {
+      queries: {
+        retry: (failureCount, error) => {
+          if (error instanceof ApiError && error.code === "VALIDATION_ERROR")
+            return false;
+          return failureCount < 3;
+        },
+      },
+    },
+  });
   function useFetch<NAME extends keyof ApiTypeMap>(stateName: NAME) {
     type StateType = ApiTypeMap[NAME]["type"];
     const { url, schema } = apiModel[stateName];
