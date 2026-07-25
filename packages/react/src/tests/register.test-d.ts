@@ -1,15 +1,16 @@
 import { register } from "../register";
 import { UserSchema } from "./lib/schemas";
+import z from "zod";
 
 const BASE_URL = "http://localhost:3001/api";
 const userUrl = BASE_URL + "/user";
 describe("register type tests", () => {
   it("throws error on type - schema mismatch", () => {
-    register<{ user: { type: { name_1: string } } }>({
+    register<{ user: { type: { _name: string } } }>({
       user: {
-        url: userUrl,
+        url: "/user",
         // @ts-expect-error - type - schema mismatch
-        schema: UserSchema,
+        schema: z.object({ name: z.string() }),
       },
     });
   });
