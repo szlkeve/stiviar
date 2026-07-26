@@ -1,15 +1,12 @@
 import { QueryClient, useQuery } from "@tanstack/react-query";
 import { validate } from "./lib/validate";
 import { defaultFetchFn } from "./lib/defaultFetchFn";
-import { ApiModel, BaseApiTypeMap, UseFetchArgs } from "./lib/types";
+import { ApiModel, BaseApiTypeMap, Options, UseFetchArgs } from "./lib/types";
 import { getQueryClientOptions } from "./tests/getQueryClientOptions";
 
 export function register<ApiTypeMap extends BaseApiTypeMap>(
   apiModel: ApiModel<ApiTypeMap>,
-  options?: {
-    fetchFn?: (url: string) => Promise<unknown>;
-    queryClient?: QueryClient;
-  },
+  options?: Options,
 ) {
   const fetchFn = options?.fetchFn ?? defaultFetchFn;
   const client =

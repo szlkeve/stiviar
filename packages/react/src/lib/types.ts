@@ -1,4 +1,5 @@
 import z from "zod";
+import { QueryClient } from "@tanstack/react-query";
 
 export type BaseApiTypeMap = {
   [stateName: string]: { type: object } & (
@@ -21,3 +22,8 @@ export type UseFetchArgs<
 > = ApiTypeMap[NAME]["params"] extends object
   ? [stateName: NAME, params: ApiTypeMap[NAME]["params"]]
   : [stateName: NAME, params?: undefined];
+
+export type Options = {
+  fetchFn?: (url: string) => Promise<unknown>;
+  queryClient?: QueryClient;
+};
