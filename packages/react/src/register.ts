@@ -6,9 +6,14 @@ import { getQueryClientOptions } from "./tests/getQueryClientOptions";
 
 export function register<ApiTypeMap extends BaseApiTypeMap>(
   apiModel: ApiModel<ApiTypeMap>,
-  fetchFn = defaultFetchFn,
+  options?: {
+    fetchFn?: (url: string) => Promise<unknown>;
+    queryClient?: QueryClient;
+  },
 ) {
-  const client = new QueryClient(getQueryClientOptions());
+  const fetchFn = options?.fetchFn ?? defaultFetchFn;
+  const client =
+    options?.queryClient ?? new QueryClient(getQueryClientOptions());
   function useFetch<NAME extends keyof ApiTypeMap>(
     ...args: UseFetchArgs<ApiTypeMap, NAME>
   ) {

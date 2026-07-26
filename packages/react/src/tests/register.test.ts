@@ -18,7 +18,7 @@ describe("API model tests", () => {
   it("sets the correct value", async () => {
     const { useFetch } = register<{ user: { type: User } }>(
       { user: { url: "/user", schema: UserSchema } },
-      (url) => mockFetchFn(url, mockData),
+      { fetchFn: (url) => mockFetchFn(url, mockData) },
     );
     const { result } = renderHook(() => useFetch("user"));
     expect(result.current.data).toBe(undefined);
@@ -30,7 +30,7 @@ describe("API model tests", () => {
   it("sets the correct loading state", async () => {
     const { useFetch } = register<{ user: { type: User } }>(
       { user: { url: "/user", schema: UserSchema } },
-      (url) => mockFetchFn(url, mockData),
+      { fetchFn: (url) => mockFetchFn(url, mockData) },
     );
     const { result } = renderHook(() => useFetch("user"));
     expect(result.current.isLoading).toBe(true);
@@ -43,7 +43,7 @@ describe("API model tests", () => {
     mockData = { "/user": { name: "hello" } }; // missing id — fails UserSchema
     const { useFetch } = register<{ user: { type: User } }>(
       { user: { url: "/user", schema: UserSchema } },
-      (url) => mockFetchFn(url, mockData),
+      { fetchFn: (url) => mockFetchFn(url, mockData) },
     );
     const { result } = renderHook(() => useFetch("user"));
     await waitFor(() => {
@@ -59,7 +59,7 @@ describe("API model tests", () => {
     const fetchSpy = vi.fn((url: string) => mockFetchFn(url, mockData));
     const { useFetch } = register<{ user: { type: User } }>(
       { user: { url: "/user", schema: UserSchema } },
-      fetchSpy,
+      { fetchFn: fetchSpy },
     );
     const { result: result1 } = renderHook(() => useFetch("user"));
     const { result: result2 } = renderHook(() => useFetch("user"));

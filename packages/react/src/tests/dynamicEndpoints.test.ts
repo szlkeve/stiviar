@@ -43,7 +43,7 @@ describe("dynamic state with custom params", () => {
           schema: TransactionsSchema,
         },
       },
-      (url) => mockFetchFn(url, mockData),
+      { fetchFn: (url) => mockFetchFn(url, mockData) },
     );
 
     const { result } = renderHook(() =>
@@ -77,7 +77,7 @@ describe("dynamic state with custom params", () => {
           schema: TransactionsSchema,
         },
       },
-      fetchSpy,
+      { fetchFn: fetchSpy },
     );
 
     const { result: january } = renderHook(() =>
@@ -108,7 +108,7 @@ describe("dynamic state with custom params", () => {
           schema: TransactionsSchema,
         },
       },
-      fetchSpy,
+      { fetchFn: fetchSpy },
     );
 
     const params = { from: "2024-01-01", to: "2024-01-31" };
@@ -142,7 +142,7 @@ describe("dynamic state with custom params", () => {
           schema: TransactionsSchema,
         },
       },
-      (url) => mockFetchFn(url, mockData),
+      { fetchFn: (url) => mockFetchFn(url, mockData) },
     );
 
     const { result } = renderHook(() =>
