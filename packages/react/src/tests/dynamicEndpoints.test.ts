@@ -3,6 +3,7 @@ import { register } from "../register";
 import { mockFetchFn } from "./lib/mockFetchFn";
 import { z } from "zod";
 import { vi } from "vitest";
+import { ApiError } from "../errors";
 
 interface Transaction {
   id: number;
@@ -124,5 +125,37 @@ describe("dynamic state with custom params", () => {
     });
 
     expect(fetchSpy).toHaveBeenCalledTimes(1);
+  });
+  it("sets a validation error when the response doesn't match the schema", async () => {
+    mockData = {
+      "/transactions?from=2024-01-01&to=2024-01-31": [
+        { id: 1, amount: "not-a-number" }, // amount should be a number, not a string
+      ],
+    };
+
+    const { useFetch } = register<{
+      transactions: { type: Transaction[]; params: DateRangeParams };
+    }>(
+      {
+        transactions: {
+          url: (params) => `/transactions?from=${params.from}&to=${params.to}`,
+          schema: TransactionsSchema,
+        },
+      },
+      (url) => mockFetchFn(url, mockData),
+    );
+
+    const { result } = renderHook(() =>
+      useFetch("transactions", { from: "2024-01-01", to: "2024-01-31" }),
+    );
+
+    await waitFor(() => {
+      expect(result.current.error).not.toBeNull();
+    });
+
+    expect(result.current.error).toBeInstanceOf(ApiError);
+    // @ts-expect-error - code does not exist on general errors
+    expect(result.current.error?.code).toBe("VALIDATION_ERROR");
+    expect(result.current.data).toBe(undefined);
   });
 });
