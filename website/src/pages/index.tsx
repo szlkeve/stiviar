@@ -7,6 +7,7 @@ import styles from "./index.module.css";
 import { ReactNode } from "react";
 import { FEATURES } from "@site/src/lib/features";
 import { FeatureCard } from "@site/src/components/FeatureCard";
+import { HeroCodeSample } from "@site/src/components/HeroCodeSample";
 
 export default function Home(): ReactNode {
   return (
@@ -42,6 +43,7 @@ export default function Home(): ReactNode {
 
       <main>
         <section className="container margin-vert--xl">
+          <HeroCodeSample />
           <div className="row row--align-center">
             <div className="col col--6">
               <Heading as="h2">Why this exists</Heading>

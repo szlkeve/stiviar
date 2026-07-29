@@ -54,3 +54,11 @@
 .blue-border {
   border: 2px solid blue;
 }
+
+[data-theme="light"] .shiki.nord {
+  display: none;
+}
+
+[data-theme="dark"] .shiki.min-light {
+  display: none;
+}
