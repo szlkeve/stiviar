@@ -2,7 +2,6 @@ import clsx from "clsx";
 import Layout from "@theme/Layout";
 import Link from "@docusaurus/Link";
 import Heading from "@theme/Heading";
-import useBaseUrl from "@docusaurus/useBaseUrl";
 import { ContractDiagram } from "../components/ContractDiagram";
 import styles from "./index.module.css";
 import { ReactNode } from "react";
@@ -10,8 +9,6 @@ import { FEATURES } from "@site/src/lib/features";
 import { FeatureCard } from "@site/src/components/FeatureCard";
 
 export default function Home(): ReactNode {
-  const videoSrc = useBaseUrl("/videos/type_demo.mp4");
-
   return (
     <Layout
       title="A typesafe, decoupled API layer for your frontend"
@@ -19,7 +16,6 @@ export default function Home(): ReactNode {
     >
       <header className={clsx("hero", styles.heroBanner)}>
         <div className="container">
-          <p className={styles.eyebrow}>ONE CONTRACT. ANY BACKEND.</p>
           <Heading as="h1" className="hero__title">
             Lightweight type wrapper around your API endpoint
           </Heading>
@@ -29,16 +25,16 @@ export default function Home(): ReactNode {
           </p>
           <div className="margin-top--lg">
             <Link
-              className="button button--primary button--lg margin-right--md"
+              className="button button--primary margin-right--md"
               to="/docs/getting-started"
             >
-              Get started
+              Read the Docs
             </Link>
             <Link
-              className="button button--outline button--secondary button--lg"
+              className="button button--outline button--secondary"
               to="/docs/intro"
             >
-              Read the docs
+              GitHub
             </Link>
           </div>
         </div>
