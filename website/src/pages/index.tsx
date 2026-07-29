@@ -6,7 +6,8 @@ import useBaseUrl from "@docusaurus/useBaseUrl";
 import { ContractDiagram } from "../components/ContractDiagram";
 import styles from "./index.module.css";
 import { ReactNode } from "react";
-import { COMPARISON_ROWS, FEATURES } from "@site/src/lib/features";
+import { FEATURES } from "@site/src/lib/features";
+import { FeatureCard } from "@site/src/components/FeatureCard";
 
 export default function Home(): ReactNode {
   const videoSrc = useBaseUrl("/videos/type_demo.mp4");
@@ -45,27 +46,6 @@ export default function Home(): ReactNode {
 
       <main>
         <section className="container margin-vert--xl">
-          <div className={styles.demoFrame}>
-            <div className={styles.demoFrameBar}>
-              <span className={styles.dot} data-color="red" />
-              <span className={styles.dot} data-color="yellow" />
-              <span className={styles.dot} data-color="green" />
-            </div>
-            <video
-              className={styles.demoVideo}
-              src={videoSrc}
-              autoPlay
-              muted
-              loop
-              playsInline
-              controls
-            >
-              Your browser does not support the video tag.
-            </video>
-          </div>
-        </section>
-
-        <section className="container margin-vert--xl">
           <div className="row row--align-center">
             <div className="col col--6">
               <Heading as="h2">Why this exists</Heading>
@@ -97,50 +77,10 @@ export default function Home(): ReactNode {
           <Heading as="h2" className="text--center margin-bottom--lg">
             What you get
           </Heading>
-          <div className="row">
+          <div className="column">
             {FEATURES.map((feature) => (
-              <div key={feature.tag} className="col col--4 margin-bottom--lg">
-                <div className="card" style={{ height: "100%" }}>
-                  <div className="card__header">
-                    <span className={styles.featureTag}>{feature.tag}</span>
-                    <Heading as="h3">{feature.title}</Heading>
-                  </div>
-                  <div className="card__body">
-                    <p>{feature.description}</p>
-                  </div>
-                </div>
-              </div>
+              <FeatureCard key={feature.tag} feature={feature} />
             ))}
-          </div>
-        </section>
-
-        <section className="container margin-vert--xl">
-          <Heading as="h2" className="text--center margin-bottom--lg">
-            How it compares
-          </Heading>
-          <div className={styles.tableWrap}>
-            <table>
-              <thead>
-                <tr>
-                  <th />
-                  <th>This library</th>
-                  <th>tRPC</th>
-                  <th>oRPC</th>
-                  <th>fetch / Axios</th>
-                </tr>
-              </thead>
-              <tbody>
-                {COMPARISON_ROWS.map((row) => (
-                  <tr key={row.label}>
-                    <th scope="row">{row.label}</th>
-                    <td>{row.lib}</td>
-                    <td>{row.trpc}</td>
-                    <td>{row.orpc}</td>
-                    <td>{row.raw}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
           </div>
         </section>
 

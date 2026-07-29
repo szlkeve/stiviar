@@ -1,4 +1,6 @@
-export const FEATURES = [
+import { Feature } from "@site/src/lib/types";
+
+export const FEATURES: Feature[] = [
   {
     tag: "TYPES",
     title: "Type safety, without backend coupling",
@@ -52,7 +54,7 @@ export const FEATURES = [
     description:
       "One function to register your states, one hook to consume them. If you know React and zod, you already know this library.",
   },
-] as const;
+];
 
 export const COMPARISON_ROWS = [
   {
