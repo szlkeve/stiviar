@@ -145,6 +145,7 @@ const config: Config = {
       darkTheme: prismThemes.dracula,
     },
   } satisfies Preset.ThemeConfig,
+  plugins: ["./src/plugins/tailwind-config.js"],
 };
 
 export default config;

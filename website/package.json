@@ -30,8 +30,11 @@
     "@docusaurus/tsconfig": "3.10.2",
     "@docusaurus/types": "3.10.2",
     "@shikijs/twoslash": "^4.3.1",
+    "@tailwindcss/postcss": "^4.3.3",
     "@types/react": "^19.0.0",
+    "postcss": "^8.5.25",
     "shiki": "^4.3.1",
+    "tailwindcss": "^4.3.3",
     "tsx": "^4.23.1",
     "typescript": "~6.0.2"
   },

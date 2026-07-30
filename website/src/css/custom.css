@@ -6,6 +6,25 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap");
 @import "./twoslash.css";
+@import "tailwindcss/theme.css" layer(theme);
+
+@layer base {
+  #tw-scope {
+    @import "tailwindcss/preflight.css" layer(base);
+  }
+}
+
+@theme {
+  --color-surface: var(--ifm-background-surface-color);
+  --color-surface-alt: var(--ifm-background-color);
+  --color-border: var(--ifm-color-emphasis-300);
+  --color-muted: var(--ifm-color-emphasis-600);
+  --color-accent: var(--ifm-color-primary);
+}
+
+@import "tailwindcss/utilities.css" layer(utilities);
+
+@custom-variant dark (&:is([data-theme="dark"] *));
 
 main {
   --twoslash-popup-bg: #1e1e1e;
