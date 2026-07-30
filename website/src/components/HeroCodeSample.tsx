@@ -1,4 +1,4 @@
-import { heroCodeSampleHtml } from "@site/src/components/heroCodeSample.generated";
+import { generated } from "@site/src/examples/generated/generated";
 
 export function HeroCodeSample() {
   return (
@@ -14,7 +14,7 @@ export function HeroCodeSample() {
       `}</style>
       <div
         style={{ height: "100%" }}
-        dangerouslySetInnerHTML={{ __html: heroCodeSampleHtml }}
+        dangerouslySetInnerHTML={{ __html: generated }}
       />
     </div>
   );
