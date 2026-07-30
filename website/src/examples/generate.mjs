@@ -4,8 +4,6 @@ import { readFileSync, writeFileSync } from "node:fs";
 const examplePath = "raw/helloWorldExample.ts";
 const code = readFileSync(new URL(examplePath, import.meta.url), "utf-8");
 
-console.log("code: ", code);
-
 const html = await codeToHtml(code, {
   lang: "ts",
   theme: "vitesse-dark",
