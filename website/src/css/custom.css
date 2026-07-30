@@ -7,6 +7,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap");
 @import "./twoslash.css";
 
+main {
+  --twoslash-popup-bg: #1e1e1e;
+  --twoslash-popup-color: #dbd7caee;
+  --twoslash-border-color: #444;
+  --twoslash-docs-color: #a0a0a0;
+}
+
 /* You can override the default Infima variables here. */
 :root {
   --ifm-color-primary: #14b8a6;
