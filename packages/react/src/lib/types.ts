@@ -2,7 +2,7 @@ import z from "zod";
 import { QueryClient } from "@tanstack/react-query";
 
 export type BaseApiTypeMap = {
-  [stateName: string]: { type: object } & (
+  [stateName: string]: { type: object | string | number | boolean } & (
     { params: { [param: string]: string | number } } | { params?: undefined }
   );
 };
