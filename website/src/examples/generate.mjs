@@ -1,4 +1,3 @@
-import { transformerTwoslash } from "@shikijs/twoslash";
 import { codeToHtml } from "shiki";
 import { readFileSync, writeFileSync } from "node:fs";
 
@@ -10,7 +9,6 @@ console.log("code: ", code);
 const html = await codeToHtml(code, {
   lang: "ts",
   theme: "vitesse-dark",
-  transformers: [transformerTwoslash()],
 });
 
 const generatedPath = "generated/generated.ts";
