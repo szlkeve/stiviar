@@ -3,3 +3,8 @@ export type Feature = {
   title: string;
   description: string;
 };
+
+export type CodeFile = {
+  fileName: string;
+  codeHtml: string;
+};
