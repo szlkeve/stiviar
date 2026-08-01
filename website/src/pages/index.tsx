@@ -16,19 +16,22 @@ export default function Home(): ReactNode {
       description="Define your app's API contract once — types, validation, and URLs — and never think about data fetching again."
     >
       <header className={clsx("hero", styles.heroBanner)}>
-        <div className="container">
+        <div className="container text-center">
           <Heading as="h1" className="hero__title">
-            Lightweight type wrapper around your API endpoint
+            RPC Lite
           </Heading>
           <p className="hero__subtitle">
             A fully decoupled, declarative, type-safe API layer for your
             frontend.
           </p>
-          <div className="margin-top--lg">
-            <Link
-              className="button button--primary margin-right--md"
-              to="/docs/getting-started"
-            >
+        </div>
+      </header>
+
+      <main>
+        <section className="container flex flex-col gap-8">
+          <HeroCodeSample />
+          <div className="mamx-auto flex justify-center gap-8">
+            <Link className="button button--primary" to="/docs/getting-started">
               Read the Docs
             </Link>
             <Link
@@ -38,12 +41,6 @@ export default function Home(): ReactNode {
               GitHub
             </Link>
           </div>
-        </div>
-      </header>
-
-      <main>
-        <section className="container margin-vert--xl">
-          <HeroCodeSample />
           <div className="row row--align-center">
             <div className="col col--6">
               <Heading as="h2">Why this exists</Heading>
