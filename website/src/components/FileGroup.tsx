@@ -7,16 +7,16 @@ export function FileGroup({ files }: { files: CodeFile[] }) {
 
   if (files.length === 0) return <></>;
   return (
-    <div className="w-full flex flex-col gap-2 rounded-md border-border bg-surface p-2">
-      <div className="flex flex-row gap-1 border-b border-border">
+    <div className="w-full flex flex-col rounded-md border-border bg-surface p-2">
+      <div className="flex flex-row gap-1">
         {files.map((file, index) => (
           <button
             key={file.fileName}
             onClick={() => setActiveIndex(index)}
-            className={`px-3 py-1.5 text-sm font-mono rounded-t-md transition-colors ${
+            className={`px-3 py-1.5 text-sm font-mono rounded-md transition-colors cursor-pointer ${
               index === activeIndex
                 ? "bg-surface-alt text-accent border-b-2 border-accent"
-                : "text-muted hover:text-accent"
+                : "text-muted hover:text-accent bg-surface"
             }`}
           >
             {file.fileName}
