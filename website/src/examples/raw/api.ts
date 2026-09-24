@@ -1,4 +1,4 @@
-import { register } from "@styviar/api_model";
+import { register } from "@stiviar/api_model";
 import { z } from "zod";
 
 export const UserSchema: z.ZodType<string> = z.string();

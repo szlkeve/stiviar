@@ -1,6 +1,6 @@
 import type { Movies, User } from "./types.ts";
 import { MoviesSchema, UserSchema } from "./schemas.ts";
-import { register } from "@styviar/api_model";
+import { register } from "@stiviar/api_model";
 import { BASE_URL } from "./constants.ts";
 
 export const api = register<{

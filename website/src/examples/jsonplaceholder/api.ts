@@ -1,6 +1,6 @@
 // api.ts
 
-import { register } from "@styviar/api_model";
+import { register } from "@stiviar/api_model";
 import {
   Todos,
   TodosSchema,
