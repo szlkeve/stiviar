@@ -3,9 +3,7 @@
   "private": true,
   "workspaces": [
     "packages/*",
-    "examples/*",
-    "server/*",
-    "website"
+    "examples/*"
   ],
   "scripts": {
     "build": "npm run build --workspaces --if-present",
