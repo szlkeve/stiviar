@@ -8,8 +8,8 @@
     ".": "./src/index.ts"
   },
   "scripts": {
-    "test": "vitest run --typecheck",
-    "test:watch": "vitest --typecheck"
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^7.0.0",
