@@ -1,4 +1,4 @@
-import { register } from "../../register";
+import { register } from "../../../register";
 import z from "zod";
 
 describe("test base url — type tests", () => {

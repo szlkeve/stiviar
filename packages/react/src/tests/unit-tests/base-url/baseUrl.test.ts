@@ -1,8 +1,8 @@
 import { renderHook, waitFor } from "@testing-library/react";
 import { vi } from "vitest";
-import { register } from "../../register";
+import { register } from "../../../register";
 import z from "zod";
-import { mockFetchFn } from "../test-helpers/mockFetchFn";
+import { mockFetchFn } from "../../test-helpers/mockFetchFn";
 
 describe("test base url", () => {
   it("can be registered without a baseUrl option", async () => {
