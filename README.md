@@ -23,11 +23,11 @@ Every frontend team eventually writes the same brittle layer by hand: a fetch ca
 
 ## Packages
 
-| Package | Description |
-|---|---|
-| [`@stiviar/core`](./packages/core) | Framework-agnostic engine: model registration, validation, caching, errors |
-| [`@stiviar/react`](./packages/react) | React bindings (`useFetch`) |
-| [`@stiviar/vue`](./packages/vue) | Vue bindings |
+| Package                              | Description                                                                |
+| ------------------------------------ | -------------------------------------------------------------------------- |
+| [`@stiviar/core`](./packages/core)   | Framework-agnostic engine: model registration, validation, caching, errors |
+| [`@stiviar/react`](./packages/react) | React bindings (`useFetch`)                                                |
+| [`@stiviar/vue`](./packages/vue)     | Vue bindings                                                               |
 
 ## Quick start
 

@@ -4,7 +4,7 @@ export type Category = {
   id: string;
   name: string;
   slug: string;
-}
+};
 
 export const CategorySchema: z.ZodType<Category> = z.object({
   id: z.string(),
@@ -18,7 +18,7 @@ export type User = {
   name: string;
   email: string;
   avatar: string;
-}
+};
 
 export const UserSchema: z.ZodType<User> = z.object({
   id: z.string(),
@@ -36,7 +36,7 @@ export type Post = {
   categoryId: number;
   published: boolean;
   createdAt: string;
-}
+};
 
 export const PostSchema: z.ZodType<Post> = z.object({
   id: z.string(),
@@ -54,7 +54,7 @@ export type Comment = {
   postId: string;
   author: string;
   text: string;
-}
+};
 
 export const CommentSchema: z.ZodType<Comment> = z.object({
   id: z.string(),
@@ -64,13 +64,12 @@ export const CommentSchema: z.ZodType<Comment> = z.object({
 });
 export const CommentsSchema = z.array(CommentSchema);
 
-
 export type PostComment = {
   id: string;
   postId: string;
   author: string;
   text: string;
-}
+};
 
 export const PostCommentSchema: z.ZodType<PostComment> = z.object({
   id: z.string(),

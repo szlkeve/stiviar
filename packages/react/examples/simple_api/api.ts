@@ -43,4 +43,4 @@ export const api = register<{
   },
 });
 
-export const useFetch = api.useFetch
+export const useFetch = api.useFetch;
