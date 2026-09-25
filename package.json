@@ -13,5 +13,9 @@
   "devDependencies": {
     "dotenv": "^18.0.3",
     "prettier": "3.9.6"
+  },
+  "dependencies": {
+    "@tanstack/react-query": "^5.103.2",
+    "zod": "^4.6.5"
   }
 }
