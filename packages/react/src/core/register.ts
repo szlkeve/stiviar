@@ -7,8 +7,7 @@ export function register<ApiTypeMap extends BaseApiTypeMap>(
   apiModel: ApiModel<ApiTypeMap>,
   options?: Options,
 ) {
-  const client =
-    options?.queryClient ?? new QueryClient(getQueryClientOptions());
+  const client = new QueryClient(getQueryClientOptions());
   const useData = createDataHook(apiModel, client, options);
-  return { useData };
+  return { useData, client };
 }
