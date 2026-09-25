@@ -63,7 +63,7 @@ describe("register type tests", () => {
     });
   });
 
-  it("requires useFetch to be called with params when the state declares them", () => {
+  it("requires useData to be called with params when the state declares them", () => {
     const { useData } = register<{
       user: { type: { name: string }; params: { id: number } };
     }>({
@@ -76,7 +76,7 @@ describe("register type tests", () => {
     useData("user");
   });
 
-  it("does not allow useFetch to be called with params when the state has none", () => {
+  it("does not allow useData to be called with params when the state has none", () => {
     const { useData } = register<{ user: { type: { name: string } } }>({
       user: {
         url: userUrl,
@@ -87,7 +87,7 @@ describe("register type tests", () => {
     useData("user", { id: 1 });
   });
 
-  it("throws error when useFetch is called with the wrong params shape", () => {
+  it("throws error when useData is called with the wrong params shape", () => {
     const { useData } = register<{
       user: { type: { name: string }; params: { id: number } };
     }>({

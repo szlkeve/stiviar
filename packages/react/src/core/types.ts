@@ -16,7 +16,7 @@ export type ApiModel<ApiTypeMap extends BaseApiTypeMap> = {
   };
 };
 
-export type UseFetchArgs<
+export type UseDataArgs<
   ApiTypeMap extends BaseApiTypeMap,
   NAME extends keyof ApiTypeMap,
 > = ApiTypeMap[NAME]["params"] extends object

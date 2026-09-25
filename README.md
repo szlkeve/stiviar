@@ -47,15 +47,15 @@ export const api = register<{ users: { type: Users } }>({
   },
 });
 
-export const useFetch = api.useFetch;
+export const useData = api.useData;
 ```
 
 ```tsx
 // Component.tsx
-import { useFetch } from "./api";
+import { useData } from "./api";
 
 export function Component() {
-  const { data } = useFetch("users");
+  const { data } = useData("users");
   return <div>user count: {data?.length}</div>;
 }
 ```

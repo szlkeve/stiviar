@@ -45,11 +45,11 @@ export const api = register<{
   },
 });
 
- const useFetch = api.useData;
+ const useData = api.useData;
 
 describe("integration tests", () => {
   it("sets the correct value", async () => {
-    const { result } = renderHook(() => useFetch("category", { id: "1" }));
+    const { result } = renderHook(() => useData("category", { id: "1" }));
     expect(result.current.data).toBe(undefined);
     await waitFor(() => {
       expect(result.current.data).toEqual({

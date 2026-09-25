@@ -31,7 +31,7 @@ export const api = register<{
   },
 });
 
-export const useFetch = api.useFetch;
+export const useData = api.useData;
 export const isContractValid = api.isContractValid;
 ```
 
@@ -39,10 +39,10 @@ Use it in a component:
 
 ```tsx
 // Component.tsx
-import { useFetch } from "./api";
+import { useData } from "./api";
 
 export function Component() {
-  const { data, isLoading, error } = useFetch("users");
+  const { data, isLoading, error } = useData("users");
 
   if (isLoading) return <p>Loading…</p>;
   if (error) return <p>Something went wrong.</p>;
@@ -65,7 +65,7 @@ export const api = register<TypeModel>(apiModel, {
 
 ## API
 
-- `useFetch(key, params?)` — TanStack Query-backed fetch hook for a registered endpoint
+- `useData(key, params?)` — TanStack Query-backed fetch hook for a registered endpoint
 - `isContractValid(openApiSchema)` — validates a live OpenAPI contract against your registered types
 
 ## License
