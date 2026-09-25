@@ -1,6 +1,6 @@
 import { QueryClient } from "@tanstack/react-query";
-import { ApiModel, BaseApiTypeMap, Options } from "./lib/types";
-import { getQueryClientOptions } from "./lib/getQueryClientOptions";
+import { ApiModel, BaseApiTypeMap, Options } from "./types";
+import { getQueryClientOptions } from "./getQueryClientOptions";
 import { createUseFetch } from "./createUseFetch";
 
 export function register<ApiTypeMap extends BaseApiTypeMap>(

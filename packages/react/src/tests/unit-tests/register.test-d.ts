@@ -1,4 +1,4 @@
-import { register } from "../../register";
+import { register } from "../../core/register";
 import { UserSchema } from "../test-helpers/schemas";
 import z from "zod";
 

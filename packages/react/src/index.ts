@@ -1,1 +1,1 @@
-export { register } from "./register";
+export { register } from "./core/register";

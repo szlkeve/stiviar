@@ -1,7 +1,7 @@
-import { ApiModel, BaseApiTypeMap, Options, UseFetchArgs } from "./lib/types";
-import { validate } from "./lib/validate";
+import { ApiModel, BaseApiTypeMap, Options, UseFetchArgs } from "./types";
+import { validate } from "./validate";
 import { QueryClient, useQuery } from "@tanstack/react-query";
-import { defaultFetchFn } from "./lib/defaultFetchFn";
+import { defaultFetchFn } from "./defaultFetchFn";
 
 export function createUseFetch<ApiTypeMap extends BaseApiTypeMap>(
   apiModel: ApiModel<ApiTypeMap>,

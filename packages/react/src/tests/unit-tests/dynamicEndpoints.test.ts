@@ -1,9 +1,9 @@
 import { renderHook, waitFor } from "@testing-library/react";
-import { register } from "../../register";
+import { register } from "../../core/register";
 import { mockFetchFn } from "../test-helpers/mockFetchFn";
 import { z } from "zod";
 import { vi } from "vitest";
-import { ApiError } from "../../errors";
+import { ApiError } from "../../core/errors";
 
 interface Transaction {
   id: number;

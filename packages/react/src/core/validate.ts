@@ -1,5 +1,5 @@
 import z from "zod";
-import { ApiError } from "../errors";
+import { ApiError } from "./errors";
 
 type Simplify<T> = { [K in keyof T]: T[K] } & {};
 export function validate<T>(schema: z.ZodType<T>, raw: unknown): Simplify<T> {
