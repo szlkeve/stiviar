@@ -25,3 +25,5 @@ jobs:
 
       - name: Run tests
         run: npm test
+        env:
+          MOCKAPI_KEY: ${{ secrets.MOCKAPI_KEY }}
