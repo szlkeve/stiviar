@@ -47,7 +47,6 @@ describe("API model tests", () => {
     );
     const { result } = renderHook(() => useFetch("user"));
     await waitFor(() => {
-      console.log("current: ", result.current);
       expect(result.current.error).not.toBeNull();
     });
     expect(result.current.error).toBeInstanceOf(ApiError);
