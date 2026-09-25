@@ -6,3 +6,5 @@
 6. [ ] type def - declare type and value model outside of the register function
 7. [ ] set base url
 8. [ ] publish package
+9. [ ] solve authentication - explain how the api works with different auth providers
+10. [ ] different BAAS solution integration - rest api, graph api, firebase, supabase
