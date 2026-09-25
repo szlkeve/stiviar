@@ -16,11 +16,11 @@ describe("API model tests", () => {
   });
 
   it("sets the correct value", async () => {
-    const { useFetch } = register<{ user: { type: User } }>(
+    const { useData } = register<{ user: { type: User } }>(
       { user: { url: "/user", schema: UserSchema } },
       { fetchFn: (url) => mockFetchFn(url, mockData) },
     );
-    const { result } = renderHook(() => useFetch("user"));
+    const { result } = renderHook(() => useData("user"));
     expect(result.current.data).toBe(undefined);
     await waitFor(() =>
       expect(result.current.data).toEqual({ name: "hello", id: 1 }),
@@ -28,11 +28,11 @@ describe("API model tests", () => {
   });
 
   it("sets the correct loading state", async () => {
-    const { useFetch } = register<{ user: { type: User } }>(
+    const { useData } = register<{ user: { type: User } }>(
       { user: { url: "/user", schema: UserSchema } },
       { fetchFn: (url) => mockFetchFn(url, mockData) },
     );
-    const { result } = renderHook(() => useFetch("user"));
+    const { result } = renderHook(() => useData("user"));
     expect(result.current.isLoading).toBe(true);
     await waitFor(() => {
       expect(result.current.isLoading).toBe(false);
@@ -41,11 +41,11 @@ describe("API model tests", () => {
 
   it("sets an error when the response fails schema validation", async () => {
     mockData = { "/user": { name: "hello" } }; // missing id — fails UserSchema
-    const { useFetch } = register<{ user: { type: User } }>(
+    const { useData } = register<{ user: { type: User } }>(
       { user: { url: "/user", schema: UserSchema } },
       { fetchFn: (url) => mockFetchFn(url, mockData) },
     );
-    const { result } = renderHook(() => useFetch("user"));
+    const { result } = renderHook(() => useData("user"));
     await waitFor(() => {
       expect(result.current.error).not.toBeNull();
     });
@@ -56,12 +56,12 @@ describe("API model tests", () => {
 
   it("caches the request — only fetches once across multiple hook instances", async () => {
     const fetchSpy = vi.fn((url: string) => mockFetchFn(url, mockData));
-    const { useFetch } = register<{ user: { type: User } }>(
+    const { useData } = register<{ user: { type: User } }>(
       { user: { url: "/user", schema: UserSchema } },
       { fetchFn: fetchSpy },
     );
-    const { result: result1 } = renderHook(() => useFetch("user"));
-    const { result: result2 } = renderHook(() => useFetch("user"));
+    const { result: result1 } = renderHook(() => useData("user"));
+    const { result: result2 } = renderHook(() => useData("user"));
     await waitFor(() => {
       expect(result1.current.data).toEqual({ name: "hello", id: 1 });
       expect(result2.current.data).toEqual({ name: "hello", id: 1 });

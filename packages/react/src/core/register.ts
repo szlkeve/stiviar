@@ -9,6 +9,6 @@ export function register<ApiTypeMap extends BaseApiTypeMap>(
 ) {
   const client =
     options?.queryClient ?? new QueryClient(getQueryClientOptions());
-  const useFetch = createUseFetch(apiModel, client, options);
-  return { useFetch };
+  const useData = createUseFetch(apiModel, client, options);
+  return { useData };
 }

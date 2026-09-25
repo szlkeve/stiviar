@@ -24,14 +24,14 @@ describe("register type tests", () => {
     });
   });
   it("throws error on statename mismatch", () => {
-    const { useFetch } = register<{ user: { type: { name: string } } }>({
+    const { useData } = register<{ user: { type: { name: string } } }>({
       user: {
         url: userUrl,
         schema: UserSchema,
       },
     });
     // @ts-expect-error - state name reference
-    useFetch("user_1");
+    useData("user_1");
   });
   it("requires url to be a function when params are declared", () => {
     register<{ user: { type: { name: string }; params: { id: number } } }>({
@@ -64,7 +64,7 @@ describe("register type tests", () => {
   });
 
   it("requires useFetch to be called with params when the state declares them", () => {
-    const { useFetch } = register<{
+    const { useData } = register<{
       user: { type: { name: string }; params: { id: number } };
     }>({
       user: {
@@ -73,22 +73,22 @@ describe("register type tests", () => {
       },
     });
     // @ts-expect-error - missing required params argument
-    useFetch("user");
+    useData("user");
   });
 
   it("does not allow useFetch to be called with params when the state has none", () => {
-    const { useFetch } = register<{ user: { type: { name: string } } }>({
+    const { useData } = register<{ user: { type: { name: string } } }>({
       user: {
         url: userUrl,
         schema: UserSchema,
       },
     });
     // @ts-expect-error - state declares no params, extra argument not allowed
-    useFetch("user", { id: 1 });
+    useData("user", { id: 1 });
   });
 
   it("throws error when useFetch is called with the wrong params shape", () => {
-    const { useFetch } = register<{
+    const { useData } = register<{
       user: { type: { name: string }; params: { id: number } };
     }>({
       user: {
@@ -97,6 +97,6 @@ describe("register type tests", () => {
       },
     });
     // @ts-expect-error - params shape mismatch: expects { id: number }, got { id: string }
-    useFetch("user", { id: "1" });
+    useData("user", { id: "1" });
   });
 });

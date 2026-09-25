@@ -9,12 +9,12 @@ describe("test base url", () => {
     const mockData = { "http://api/user": "hello" };
     const fetchSpy = vi.fn((url: string) => mockFetchFn(url, mockData));
 
-    const { useFetch } = register<{ user: { type: string } }>(
+    const { useData } = register<{ user: { type: string } }>(
       { user: { url: "http://api/user", schema: z.string() } },
       { fetchFn: fetchSpy },
     );
 
-    const { result } = renderHook(() => useFetch("user"));
+    const { result } = renderHook(() => useData("user"));
     await waitFor(() => {
       expect(result.current.data).toEqual("hello");
     });
@@ -26,13 +26,13 @@ describe("test base url", () => {
     const mockData = { "http://api/user": "hello" };
     const fetchSpy = vi.fn((url: string) => mockFetchFn(url, mockData));
 
-    const { useFetch } = register<{ user: { type: string } }>(
+    const { useData } = register<{ user: { type: string } }>(
       { user: { url: "http://api/user", schema: z.string() } },
       // baseUrl is accepted as an option even when the model's own url is absolute
       { baseUrl: "base_url", fetchFn: fetchSpy },
     );
 
-    const { result } = renderHook(() => useFetch("user"));
+    const { result } = renderHook(() => useData("user"));
     await waitFor(() => {
       expect(result.current.data).toEqual("hello");
     });

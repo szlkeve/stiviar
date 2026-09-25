@@ -45,7 +45,7 @@ export const api = register<{
   },
 });
 
- const useFetch = api.useFetch;
+ const useFetch = api.useData;
 
 describe("integration tests", () => {
   it("sets the correct value", async () => {

@@ -34,7 +34,7 @@ describe("dynamic state with custom params", () => {
   });
 
   it("builds the URL from params and returns the correct data", async () => {
-    const { useFetch } = register<{
+    const { useData } = register<{
       transactions: { type: Transaction[]; params: DateRangeParams };
     }>(
       {
@@ -47,7 +47,7 @@ describe("dynamic state with custom params", () => {
     );
 
     const { result } = renderHook(() =>
-      useFetch("transactions", { from: "2024-01-01", to: "2024-01-31" }),
+      useData("transactions", { from: "2024-01-01", to: "2024-01-31" }),
     );
 
     expect(result.current.data).toBe(undefined);
@@ -68,7 +68,7 @@ describe("dynamic state with custom params", () => {
 
     const fetchSpy = vi.fn((url: string) => mockFetchFn(url, mockData));
 
-    const { useFetch } = register<{
+    const { useData } = register<{
       transactions: { type: Transaction[]; params: DateRangeParams };
     }>(
       {
@@ -81,10 +81,10 @@ describe("dynamic state with custom params", () => {
     );
 
     const { result: january } = renderHook(() =>
-      useFetch("transactions", { from: "2024-01-01", to: "2024-01-31" }),
+      useData("transactions", { from: "2024-01-01", to: "2024-01-31" }),
     );
     const { result: february } = renderHook(() =>
-      useFetch("transactions", { from: "2024-02-01", to: "2024-02-28" }),
+      useData("transactions", { from: "2024-02-01", to: "2024-02-28" }),
     );
 
     await waitFor(() => {
@@ -99,7 +99,7 @@ describe("dynamic state with custom params", () => {
   it("reuses the cache when called again with identical params", async () => {
     const fetchSpy = vi.fn((url: string) => mockFetchFn(url, mockData));
 
-    const { useFetch } = register<{
+    const { useData } = register<{
       transactions: { type: Transaction[]; params: DateRangeParams };
     }>(
       {
@@ -113,10 +113,10 @@ describe("dynamic state with custom params", () => {
 
     const params = { from: "2024-01-01", to: "2024-01-31" };
     const { result: first } = renderHook(() =>
-      useFetch("transactions", params),
+      useData("transactions", params),
     );
     const { result: second } = renderHook(() =>
-      useFetch("transactions", params),
+      useData("transactions", params),
     );
 
     await waitFor(() => {
@@ -133,7 +133,7 @@ describe("dynamic state with custom params", () => {
       ],
     };
 
-    const { useFetch } = register<{
+    const { useData } = register<{
       transactions: { type: Transaction[]; params: DateRangeParams };
     }>(
       {
@@ -146,7 +146,7 @@ describe("dynamic state with custom params", () => {
     );
 
     const { result } = renderHook(() =>
-      useFetch("transactions", { from: "2024-01-01", to: "2024-01-31" }),
+      useData("transactions", { from: "2024-01-01", to: "2024-01-31" }),
     );
 
     await waitFor(() => {
