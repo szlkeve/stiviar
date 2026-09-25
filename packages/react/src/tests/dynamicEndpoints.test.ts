@@ -1,6 +1,6 @@
 import { renderHook, waitFor } from "@testing-library/react";
 import { register } from "../register";
-import { mockFetchFn } from "./lib/mockFetchFn";
+import { mockFetchFn } from "./test-helpers/mockFetchFn";
 import { z } from "zod";
 import { vi } from "vitest";
 import { ApiError } from "../errors";

@@ -1,9 +1,9 @@
 import { renderHook, waitFor } from "@testing-library/react";
 import { beforeEach, vi } from "vitest";
 import { register } from "../register";
-import { User } from "./lib/types";
-import { UserSchema } from "./lib/schemas";
-import { mockFetchFn } from "./lib/mockFetchFn";
+import { User } from "./test-helpers/types";
+import { UserSchema } from "./test-helpers/schemas";
+import { mockFetchFn } from "./test-helpers/mockFetchFn";
 import { ApiError } from "../errors";
 
 let mockData: { [url: string]: unknown } = {};

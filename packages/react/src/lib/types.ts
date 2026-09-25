@@ -26,4 +26,5 @@ export type UseFetchArgs<
 export type Options = {
   fetchFn?: (url: string) => Promise<unknown>;
   queryClient?: QueryClient;
+  baseUrl?: string;
 };

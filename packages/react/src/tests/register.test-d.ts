@@ -1,5 +1,5 @@
 import { register } from "../register";
-import { UserSchema } from "./lib/schemas";
+import { UserSchema } from "./test-helpers/schemas";
 import z from "zod";
 
 const BASE_URL = "http://localhost:3001/api";
