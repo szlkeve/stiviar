@@ -112,9 +112,7 @@ describe("dynamic state with custom params", () => {
     );
 
     const params = { from: "2024-01-01", to: "2024-01-31" };
-    const { result: first } = renderHook(() =>
-      useData("transactions", params),
-    );
+    const { result: first } = renderHook(() => useData("transactions", params));
     const { result: second } = renderHook(() =>
       useData("transactions", params),
     );

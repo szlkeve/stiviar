@@ -45,7 +45,7 @@ export const api = register<{
   },
 });
 
- const useData = api.useData;
+const useData = api.useData;
 
 describe("integration tests", () => {
   it("sets the correct value", async () => {
