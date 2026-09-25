@@ -1,7 +1,7 @@
 import { QueryClient } from "@tanstack/react-query";
 import { ApiModel, BaseApiTypeMap, Options } from "./types";
 import { getQueryClientOptions } from "./getQueryClientOptions";
-import { createUseFetch } from "./createUseFetch";
+import { createDataHook } from "./createDataHook";
 
 export function register<ApiTypeMap extends BaseApiTypeMap>(
   apiModel: ApiModel<ApiTypeMap>,
@@ -9,6 +9,6 @@ export function register<ApiTypeMap extends BaseApiTypeMap>(
 ) {
   const client =
     options?.queryClient ?? new QueryClient(getQueryClientOptions());
-  const useData = createUseFetch(apiModel, client, options);
+  const useData = createDataHook(apiModel, client, options);
   return { useData };
 }

@@ -3,7 +3,7 @@ import { validate } from "./validate";
 import { QueryClient, useQuery } from "@tanstack/react-query";
 import { defaultFetchFn } from "./defaultFetchFn";
 
-export function createUseFetch<ApiTypeMap extends BaseApiTypeMap>(
+export function createDataHook<ApiTypeMap extends BaseApiTypeMap>(
   apiModel: ApiModel<ApiTypeMap>,
   client: QueryClient,
   options?: Options,
