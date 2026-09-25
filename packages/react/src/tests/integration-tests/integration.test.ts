@@ -1,4 +1,6 @@
-import { register } from "../../src";
+import { renderHook, waitFor } from "@testing-library/react";
+
+import { register } from "../../index";
 import {
   CategoriesSchema,
   Category,
@@ -43,4 +45,18 @@ export const api = register<{
   },
 });
 
-export const useFetch = api.useFetch;
+ const useFetch = api.useFetch;
+
+describe("integration tests", () => {
+  it("sets the correct value", async () => {
+    const { result } = renderHook(() => useFetch("category", { id: "1" }));
+    expect(result.current.data).toBe(undefined);
+    await waitFor(() => {
+      expect(result.current.data).toEqual({
+        name: "Clark Skiles Jr.",
+        slug: "Investor Functionality Planner",
+        id: "1",
+      });
+    });
+  });
+});
