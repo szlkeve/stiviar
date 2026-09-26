@@ -1,15 +1,31 @@
 {
-  "name": "modeled",
+  "name": "@stiviar/react-modeled",
   "version": "1.0.0",
   "description": "Declarative, type-safe API layer for frontend apps. Register your API once, get validated data, caching, and testable contracts everywhere",
-  "main": "./src/index.ts",
-  "types": "./src/index.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "exports": {
-    ".": "./src/index.ts"
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/szlkeve/stiviar"
   },
   "scripts": {
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "build": "tsup src/index.ts --format cjs,esm --dts"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^7.0.0",
@@ -22,6 +38,5 @@
     "react-dom": "^19.2.8",
     "typescript": "^5.5.3",
     "vitest": "^4.1.10"
-  },
-  "private": true
+  }
 }

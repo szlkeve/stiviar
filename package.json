@@ -12,7 +12,8 @@
   },
   "devDependencies": {
     "dotenv": "^18.0.3",
-    "prettier": "3.9.6"
+    "prettier": "3.9.6",
+    "tsup": "^8.5.1"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.103.2",
