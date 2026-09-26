@@ -1,6 +1,6 @@
 {
   "name": "@stiviar/modeled-react",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Declarative, type-safe API layer for frontend apps. Register your API once, get validated data, caching, and testable contracts everywhere",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
