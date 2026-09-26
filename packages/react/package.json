@@ -1,7 +1,7 @@
 {
-  "name": "@stiviar/api_model",
+  "name": "modeled",
   "version": "1.0.0",
-  "description": "",
+  "description": "Declarative, type-safe API layer for frontend apps. Register your API once, get validated data, caching, and testable contracts everywhere",
   "main": "./src/index.ts",
   "types": "./src/index.ts",
   "exports": {
