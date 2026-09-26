@@ -1,11 +1,11 @@
-# @stiviar/react
+# @stiviar/modeled-react
 
-React bindings for [stiviar](https://github.com/szlkeve/stiviar) — a declarative, type-safe API layer.
+React bindings for [modeled](https://github.com/szlkeve/stiviar) — a declarative, type-safe API layer.
 
 ## Install
 
 ```bash
-npm i @stiviar/react
+npm i @stiviar/modeled-react
 ```
 
 ## Usage
@@ -14,7 +14,7 @@ Define your models once:
 
 ```ts
 // api.ts
-import { register } from "@stiviar/core";
+import { register } from "@stiviar/modeled-react";
 import { Todos, TodosSchema, Users, UsersSchema } from "./types";
 
 export const api = register<{
