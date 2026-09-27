@@ -27,9 +27,9 @@ describe("test base url", () => {
     const fetchSpy = vi.fn((url: string) => mockFetchFn(url, mockData));
 
     const { useData } = register<{ user: { type: string } }>(
-      { user: { url: "http://api/user", schema: z.string() } },
+      { user: { url: "/user", schema: z.string() } },
       // baseUrl is accepted as an option even when the model's own url is absolute
-      { baseUrl: "base_url", fetchFn: fetchSpy },
+      { baseUrl: "http://api", fetchFn: fetchSpy },
     );
 
     const { result } = renderHook(() => useData("user"));
