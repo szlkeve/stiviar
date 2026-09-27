@@ -1,5 +1,5 @@
 // api.ts
-import { Todo, TodoSchema, Todos, TodosSchema } from "./types";
+import { Todo, TodoSchema, Todos, TodosSchema } from "./types.ts";
 import { register } from "@stiviar/modeled-react";
 
 export const api = register<{
