@@ -18,3 +18,4 @@ export const api = register<{
 
 export const useData = api.useData;
 export const invalidate = api.invalidate;
+export const updateOptimistic = api.updateOptimistic;

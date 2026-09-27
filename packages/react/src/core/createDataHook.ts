@@ -22,12 +22,12 @@ export function createDataHook<ApiTypeMap extends BaseApiTypeMap>(
     const queryKey = getQueryKey<ApiTypeMap, NAME>(...args);
     const queryFn = async (): Promise<StateType> =>
       validate(schema, await fetchFn(fetchUrl));
-    const { data, isLoading, error } = useQuery(
+    const { data, isLoading, isFetching, error } = useQuery(
       { queryKey, queryFn, staleTime: Infinity },
       client,
     );
     const dataWithType: StateType | undefined = data;
-    return { data: dataWithType, isLoading, error };
+    return { data: dataWithType, isLoading, error, isFetching };
   }
 
   return useData;
