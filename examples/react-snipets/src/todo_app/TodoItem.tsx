@@ -7,6 +7,7 @@ export function TodoItem({ todo }: { todo: Todo }) {
     <li className="flex items-center justify-between gap-3">
       <Checkbox
         isSelected={todo.completed}
+        variant="secondary"
         onChange={(isSelected) => toggleTodo(todo.id, isSelected)}
       >
         <Checkbox.Content>

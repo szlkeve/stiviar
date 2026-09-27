@@ -17,55 +17,58 @@ export function TodoApp() {
   };
 
   return (
-    <Card className="w-full max-w-xl mx-auto">
-      <Card.Header>
-        <Card.Title>Todos</Card.Title>
-        <Card.Description>
-          {allTodos?.length ?? 0} total · {activeTodos?.length ?? 0} active
-        </Card.Description>
-      </Card.Header>
+    <div className="py-16">
+      <Card className="w-full max-w-xl mx-auto">
+        <Card.Header className="flex flex-row items-center justify-between">
+          <Card.Title>Todos</Card.Title>
+          <Card.Description>
+            {allTodos?.length ?? 0} total · {activeTodos?.length ?? 0} active
+          </Card.Description>
+        </Card.Header>
 
-      <Card.Content className="flex flex-col gap-4">
-        <div className="flex gap-2">
-          <Button
-            variant={filter === "all" ? "primary" : "secondary"}
-            onPress={() => setFilter("all")}
+        <Card.Content className="flex flex-col gap-4">
+          <div className="flex gap-2">
+            <Button
+              variant={filter === "all" ? "primary" : "secondary"}
+              onPress={() => setFilter("all")}
+            >
+              All
+            </Button>
+            <Button
+              variant={filter === "active" ? "primary" : "secondary"}
+              onPress={() => setFilter("active")}
+            >
+              Active
+            </Button>
+            <Button
+              variant={filter === "completed" ? "primary" : "secondary"}
+              onPress={() => setFilter("completed")}
+            >
+              Completed
+            </Button>
+          </div>
+
+          <TextField
+            className="w-full"
+            variant="secondary"
+            value={newTitle}
+            onChange={setNewTitle}
+            onKeyDown={(e) => e.key === "Enter" && handleAdd()}
           >
-            All
-          </Button>
-          <Button
-            variant={filter === "active" ? "primary" : "secondary"}
-            onPress={() => setFilter("active")}
-          >
-            Active
-          </Button>
-          <Button
-            variant={filter === "completed" ? "primary" : "secondary"}
-            onPress={() => setFilter("completed")}
-          >
-            Completed
-          </Button>
-        </div>
+            <Label>New todo</Label>
+            <Input placeholder="What needs doing?" />
+          </TextField>
+          <Button onPress={handleAdd}>Add todo</Button>
 
-        <TextField
-          className="w-full"
-          value={newTitle}
-          onChange={setNewTitle}
-          onKeyDown={(e) => e.key === "Enter" && handleAdd()}
-        >
-          <Label>New todo</Label>
-          <Input placeholder="What needs doing?" />
-        </TextField>
-        <Button onPress={handleAdd}>Add todo</Button>
+          {isLoading && <Spinner />}
 
-        {isLoading && <Spinner />}
-
-        <ul className="flex flex-col gap-2">
-          {todos?.map((todo) => (
-            <TodoItem key={todo.id} todo={todo} />
-          ))}
-        </ul>
-      </Card.Content>
-    </Card>
+          <ul className="flex flex-col gap-2">
+            {todos?.map((todo) => (
+              <TodoItem key={todo.id} todo={todo} />
+            ))}
+          </ul>
+        </Card.Content>
+      </Card>
+    </div>
   );
 }
