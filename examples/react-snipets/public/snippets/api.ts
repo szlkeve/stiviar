@@ -1,5 +1,6 @@
 // api.ts
 import { Todo, TodoSchema, Todos, TodosSchema } from "./types";
+import { register } from "@stiviar/modeled-react";
 
 export const api = register<{
   todos: { type: Todos }; // simple endpoint — no params
