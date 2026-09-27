@@ -1,49 +1,9 @@
 // TodoApp.tsx
 import { useState } from "react";
-import {
-  Button,
-  Card,
-  Checkbox,
-  Chip,
-  Input,
-  Label,
-  Spinner,
-  TextField,
-} from "@heroui/react";
-import { baseUrl, invalidate, useData } from "./api.ts";
-
-// ─────────────────────────────────────────────
-// mutations.ts content
-// ─────────────────────────────────────────────
-
-const endpoint = (path: string) => new URL(path, baseUrl).toString();
-
-async function addTodo(title: string) {
-  await fetch(endpoint("/todos"), {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ title, completed: false }),
-  });
-  invalidate("todos");
-}
-
-async function toggleTodo(id: string, completed: boolean) {
-  await fetch(endpoint(`/todos/${id}`), {
-    method: "PUT",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ completed }),
-  });
-  invalidate("todos");
-}
-
-async function deleteTodo(id: string) {
-  await fetch(endpoint(`/todos/${id}`), { method: "DELETE" });
-  invalidate("todos");
-}
-
-// ─────────────────────────────────────────────
-// TodoApp component
-// ─────────────────────────────────────────────
+import { Button, Card, Input, Label, Spinner, TextField } from "@heroui/react";
+import { useData } from "./api.ts";
+import { addTodo } from "./mutations.ts";
+import { TodoItem } from "./TodoItem.tsx";
 
 type Filter = "all" | "active" | "completed";
 
@@ -127,33 +87,7 @@ export function TodoApp() {
 
         <ul className="flex flex-col gap-2">
           {todos?.map((todo) => (
-            <li
-              key={todo.id}
-              className="flex items-center justify-between gap-3"
-            >
-              <Checkbox
-                isSelected={todo.completed}
-                onChange={(isSelected) => toggleTodo(todo.id, isSelected)}
-              >
-                <Checkbox.Content>
-                  <Checkbox.Control>
-                    <Checkbox.Indicator />
-                  </Checkbox.Control>
-                  <span
-                    className={todo.completed ? "line-through text-muted" : ""}
-                  >
-                    {todo.title}
-                  </span>
-                </Checkbox.Content>
-              </Checkbox>
-
-              <div className="flex items-center gap-2">
-                {todo.completed && <Chip>Done</Chip>}
-                <Button variant="secondary" onPress={() => deleteTodo(todo.id)}>
-                  Delete
-                </Button>
-              </div>
-            </li>
+            <TodoItem key={todo.id} todo={todo} />
           ))}
         </ul>
       </Card.Content>
