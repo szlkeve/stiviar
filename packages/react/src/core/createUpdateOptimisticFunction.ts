@@ -1,4 +1,8 @@
-import { BaseApiTypeMap, UseDataArgs } from "./types";
+import {
+  BaseApiTypeMap,
+  createUpdateOptimisticOptions,
+  UseDataArgs,
+} from "./types";
 import { getQueryKey } from "./getQueryKey";
 import { QueryClient } from "@tanstack/react-query";
 
@@ -11,7 +15,7 @@ export function createUpdateOptimisticFunction<
     state: UseDataArgs<ApiTypeMap, NAME>,
     getNewData: (currentData: State<NAME>) => State<NAME>,
     action: () => Promise<unknown>,
-    options: { invalidateAfterAction: boolean },
+    options: createUpdateOptimisticOptions,
   ) => {
     const queryKey = getQueryKey<ApiTypeMap, NAME>(...state);
     const [[, currentData]] = client.getQueriesData<State<NAME> | undefined>({

@@ -28,3 +28,8 @@ export type Options = {
   fetchFn?: (url: string) => Promise<unknown>;
   baseUrl?: string;
 };
+
+export type createUpdateOptimisticOptions = {
+  /** Whether to invalidate (and refetch) the query after applying the optimistic update. */
+  invalidateAfterAction: false;
+};
