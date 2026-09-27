@@ -12,23 +12,42 @@ npm i @stiviar/modeled-react
 
 ## Usage
 
-Define your models once:
+Define your models once — covering a simple list, a single resource by id, a filtered list, and an OData-style query:
 
 ```ts
 // api.ts
 import { register } from "@stiviar/modeled-react";
-import { Todos, TodosSchema, Users, UsersSchema } from "./types";
+import { Todo, TodoSchema, Todos, TodosSchema } from "./types";
 
 export const api = register<{
-  users: { type: Users };
-  todos: { type: Todos };
+  todos: { type: Todos }; // simple endpoint — no params
+  todo: { type: Todo; params: { id: string } }; // single resource, accessed by id
+  todosByStatus: { type: Todos; params: { completed: boolean } }; // filtered list, plain query params
+  todosOData: {
+    type: Todos;
+    params: { $filter?: string; $orderby?: string; $top?: number };
+  }; // OData-style query
 }>({
-  users: {
-    url: "https://api.example.com/users",
-    schema: UsersSchema,
-  },
   todos: {
     url: "https://api.example.com/todos",
+    schema: TodosSchema, // schema is type checked agains the registered type - no mismatch possible
+  },
+  todo: {
+    url: (p) => `https://api.example.com/todos/${p.id}`, // type of p: {id: string}
+    schema: TodoSchema,
+  },
+  todosByStatus: {
+    url: (p) => `https://api.example.com/todos?completed=${p.completed}`, // type of p: {completed: boolean}
+    schema: TodosSchema,
+  },
+  todosOData: {
+    url: (p) => {
+      // type of p: { $filter?: string; $orderby?: string; $top?: number }
+      const query = new URLSearchParams(
+        Object.entries(p).map(([k, v]) => [k, String(v)]),
+      );
+      return `https://api.example.com/odata/todos?${query.toString()}`;
+    },
     schema: TodosSchema,
   },
 });
@@ -43,12 +62,16 @@ Use it in a component:
 import { useData } from "./api";
 
 export function Component() {
-  const { data, isLoading, error } = useData("users");
+  const { data: allTodos } = useData("todos");
+  const { data: oneTodo } = useData("todo", { id: "42" });
+  const { data: activeTodos } = useData("todosByStatus", { completed: false });
+  const { data: topTodos } = useData("todosOData", {
+    $filter: "completed eq false",
+    $orderby: "createdAt desc",
+    $top: 10,
+  });
 
-  if (isLoading) return <p>Loading…</p>;
-  if (error) return <p>Something went wrong.</p>;
-
-  return <div>user count: {data?.length}</div>;
+  return <div>{allTodos?.length} todos total</div>;
 }
 ```
 
