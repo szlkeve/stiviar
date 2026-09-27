@@ -2,7 +2,7 @@ import { type Todo, TodoSchema, type Todos, TodosSchema } from "./types.ts";
 import { register } from "@stiviar/modeled-react";
 
 const apiKey = import.meta.env.VITE_MOCKAPI_KEY;
-const baseUrl = `https://${apiKey}.mockapi.io/api/`;
+export const baseUrl = `https://${apiKey}.mockapi.io/api/`;
 
 export const api = register<{
   todos: { type: Todos }; // simple endpoint — no params
@@ -40,3 +40,4 @@ const paramsToQuerystring = (params: object) =>
   ).toString();
 
 export const useData = api.useData;
+export const invalidate = api.invalidate;

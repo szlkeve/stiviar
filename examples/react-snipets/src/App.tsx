@@ -1,12 +1,7 @@
-import { Button } from "@heroui/react";
+import { TodoApp } from "./todo_app/TodoApp.tsx";
 
 function App() {
-  return (
-    <div>
-      <p>Hello There!</p>
-      <Button>Hero Button</Button>
-    </div>
-  );
+  return <TodoApp />;
 }
 
 export default App;
