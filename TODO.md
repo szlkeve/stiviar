@@ -7,6 +7,7 @@ How hard: 1 → 4
 - (2) fetch list
 - (2) error handling - fetch error, backend error, html response, validation error, ...
 - solve mutations
+- handle data from header
 
 #### Medium Prio
 
