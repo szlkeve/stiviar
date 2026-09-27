@@ -1,6 +1,5 @@
 // api.ts
 import { Todo, TodoSchema, Todos, TodosSchema } from "./types";
-import { register } from "../core/register";
 
 export const api = register<{
   todos: { type: Todos }; // simple endpoint — no params

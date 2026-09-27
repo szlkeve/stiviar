@@ -1,5 +1,4 @@
 import z from "zod";
-import { QueryClient } from "@tanstack/react-query";
 
 export type Params = string | number | boolean;
 
