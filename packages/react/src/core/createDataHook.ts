@@ -17,9 +17,11 @@ export function createDataHook<ApiTypeMap extends BaseApiTypeMap>(
     type StateType = ApiTypeMap[NAME]["type"];
     const { url, schema } = apiModel[stateName];
     const resolvedUrl: string = typeof url === "string" ? url : url(params);
+    const bu = options?.baseUrl;
+    const fetchUrl = bu ? bu + resolvedUrl : resolvedUrl;
     const queryKey = getQueryKey<ApiTypeMap, NAME>(...args);
     const queryFn = async (): Promise<StateType> =>
-      validate(schema, await fetchFn(resolvedUrl));
+      validate(schema, await fetchFn(fetchUrl));
     const { data, isLoading, error } = useQuery(
       { queryKey, queryFn, staleTime: Infinity },
       client,
