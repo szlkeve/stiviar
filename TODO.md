@@ -5,10 +5,8 @@ How hard: 1 → 4
 #### High Prio
 
 - (2) fetch list
-- (2) optimistic update
 - (2) error handling - fetch error, backend error, html response, validation error, ...
-- set default data
-- document: needs strick null checking: "strict": true
+- solve mutations
 
 #### Medium Prio
 
@@ -21,8 +19,19 @@ How hard: 1 → 4
 
 - (needs to break up per provider) different BAAS solution integration - rest api, graph api, firebase, supabase
 
+---
+
+---
+
+---
+
+### Documentation
+
+- document: needs strick null checking: "strict": true
+
 #### Only maybe
 
+- set default data
 - (2) function based definition - instead of model config, use funciton/entity to bind type and state together
 
 ## DONE
@@ -33,3 +42,4 @@ How hard: 1 → 4
 - set base url
 - (1) rename package
 - (2) publish package
+- (2) optimistic update
