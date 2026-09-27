@@ -12,6 +12,7 @@ How hard: 1 → 4
 - (2) solve authentication - explain how the api works with different auth providers
 - (2) type def - declare type and value model outside of the register function
 - (3) add sample react app
+- (2) contract test capability
 
 #### Low Prio
 

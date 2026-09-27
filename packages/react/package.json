@@ -1,6 +1,6 @@
 {
   "name": "@stiviar/modeled-react",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Declarative, type-safe API layer for frontend apps. Register your API once, get validated data, caching, and testable contracts everywhere",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -25,7 +25,8 @@
   "scripts": {
     "test": "vitest run",
     "test:watch": "vitest",
-    "build": "tsup src/index.ts --format cjs,esm --dts"
+    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "patch": "npm run test && npm version patch && npm run build && npm publish"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^7.0.0",

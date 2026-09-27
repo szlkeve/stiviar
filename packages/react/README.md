@@ -32,7 +32,6 @@ export const api = register<{
 });
 
 export const useData = api.useData;
-export const isContractValid = api.isContractValid;
 ```
 
 Use it in a component:
@@ -66,7 +65,6 @@ export const api = register<TypeModel>(apiModel, {
 ## API
 
 - `useData(key, params?)` — TanStack Query-backed fetch hook for a registered endpoint
-- `isContractValid(openApiSchema)` — validates a live OpenAPI contract against your registered types
 
 ## License
 
