@@ -1,6 +1,8 @@
 # @stiviar/modeled-react
 
-React bindings for [modeled](https://github.com/szlkeve/stiviar) — a declarative, type-safe API layer.
+A declarative, type-safe API layer for React. Register your API once — as a type, a URL, and a Zod schema — and get a fully typed data-fetching hook with built-in caching and runtime validation.
+
+No codegen, no backend language restrictions, no manual `any` casting between fetch and component. Just describe the shape of what you're calling, and `modeled-react` handles the rest.
 
 ## Install
 
@@ -50,7 +52,14 @@ export function Component() {
 }
 ```
 
-Types declared for a model flow through the whole codebase — hover `data` in your IDE and see the inferred type, with a compile-time error if your schema and type ever drift apart.
+Types declared for a model flow through the whole codebase — hover `data` in your IDE and see the inferred type, with a compile-time error if your schema and type ever drift apart. Every response is also validated at runtime against the same schema, so a change on the backend fails loudly instead of silently breaking the UI.
+
+## Features
+
+- Full type safety, no manual casting
+- Runtime validation on every fetch
+- Built-in caching (TanStack Query under the hood)
+- Typed error handling
 
 ## Testing
 
