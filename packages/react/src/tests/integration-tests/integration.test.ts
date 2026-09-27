@@ -5,7 +5,6 @@ import {
   CategoriesSchema,
   Category,
   CategorySchema,
-  CommentsSchema,
   Post,
   PostComment,
   PostCommentsSchema,
