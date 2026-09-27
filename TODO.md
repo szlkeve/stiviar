@@ -29,6 +29,7 @@ How hard: 1 → 4
 ### Documentation
 
 - document: needs strick null checking: "strict": true
+- only need to import the library at one place -> loosly coupled to the application - use own the useData hook, so you can swap it any time to a different implementation, not locking you into one ecosystem
 
 #### Only maybe
 
