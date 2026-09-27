@@ -8,6 +8,7 @@ How hard: 1 → 4
 - (2) optimistic update
 - (2) error handling - fetch error, backend error, html response, validation error, ...
 - set default data
+- document: needs strick null checking: "strict": true
 
 #### Medium Prio
 
