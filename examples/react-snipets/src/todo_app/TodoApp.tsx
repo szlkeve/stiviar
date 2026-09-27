@@ -1,24 +1,15 @@
 // TodoApp.tsx
 import { useState } from "react";
 import { Button, Card, Input, Label, Spinner, TextField } from "@heroui/react";
-import { useData } from "./api.ts";
 import { addTodo } from "./mutations.ts";
 import { TodoItem } from "./TodoItem.tsx";
-
-type Filter = "all" | "active" | "completed";
+import type { Filter } from "./types.ts";
+import { useTodos } from "./useTodos.ts";
 
 export function TodoApp() {
   const [filter, setFilter] = useState<Filter>("all");
   const [newTitle, setNewTitle] = useState("");
-  const { data: allTodos, isLoading } = useData("todos");
-  const activeTodos = allTodos.filter((todo) => !todo.completed);
-  const completedTodos = allTodos.filter((todo) => todo.completed);
-  const todos =
-    filter === "active"
-      ? activeTodos
-      : filter === "completed"
-        ? completedTodos
-        : allTodos;
+  const { todos, activeTodos, isLoading, allTodos } = useTodos(filter);
 
   const handleAdd = async () => {
     if (!newTitle.trim()) return;

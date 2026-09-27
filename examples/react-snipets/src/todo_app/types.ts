@@ -17,3 +17,5 @@ export const TodoSchema: z.ZodType<Todo> = z.object({
 
 export const TodosSchema = z.array(TodoSchema);
 export type Todos = Todo[];
+
+export type Filter = "all" | "active" | "completed";
