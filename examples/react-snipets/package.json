@@ -10,9 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@heroui/react": "^3.2.6",
+    "@heroui/styles": "^3.2.6",
+    "@stiviar/modeled-react": "*",
     "react": "^19.2.8",
-    "react-dom": "^19.2.8",
-    "@stiviar/modeled-react": "*"
+    "react-dom": "^19.2.8"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
