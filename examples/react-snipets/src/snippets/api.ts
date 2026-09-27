@@ -3,14 +3,15 @@ import { register } from "@stiviar/modeled-react";
 
 const apiKey = import.meta.env.VITE_MOCKAPI_KEY;
 const baseUrl = `https://${apiKey}.mockapi.io/api/`;
+
 export const api = register<{
   todos: { type: Todos }; // simple endpoint — no params
   todo: { type: Todo; params: { id: string } }; // single resource, accessed by id
   todosByStatus: { type: Todos; params: { completed: boolean } }; // filtered list, plain query params
-  todosOData: {
+  todosPaginated: {
     type: Todos;
-    params: { $filter?: string; $orderby?: string; $top?: number };
-  }; // OData-style query
+    params: { page: number; limit: number };
+  }; // paginated list
 }>(
   {
     todos: {
@@ -25,9 +26,8 @@ export const api = register<{
       url: (p) => `/todos?completed=${p.completed}`, // type of p: {completed: boolean}
       schema: TodosSchema,
     },
-    todosOData: {
-      // type of p: { $filter?: string; $orderby?: string; $top?: number }
-      url: (p) => `/odata/todos?${paramsToQuerystring(p)}`,
+    todosPaginated: {
+      url: (p) => `/todos?${paramsToQuerystring(p)}`, // type of p: {page: number; limit: number}
       schema: TodosSchema,
     },
   },
