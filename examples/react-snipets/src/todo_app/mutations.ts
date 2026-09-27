@@ -8,7 +8,7 @@ export async function addTodo(title: string) {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ title, completed: false }),
   });
-  invalidate("todos");
+  await invalidate("todos");
 }
 
 export async function toggleTodo(id: string, completed: boolean) {
@@ -17,10 +17,10 @@ export async function toggleTodo(id: string, completed: boolean) {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ completed }),
   });
-  invalidate("todos");
+  await invalidate("todos");
 }
 
 export async function deleteTodo(id: string) {
   await fetch(endpoint(`/todos/${id}`), { method: "DELETE" });
-  invalidate("todos");
+  await invalidate("todos");
 }
