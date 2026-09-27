@@ -10,7 +10,7 @@ import {
   Spinner,
   TextField,
 } from "@heroui/react";
-import { baseUrl, invalidate, useData } from "../api.ts";
+import { baseUrl, invalidate, useData } from "./api.ts";
 
 // ─────────────────────────────────────────────
 // mutations.ts content
