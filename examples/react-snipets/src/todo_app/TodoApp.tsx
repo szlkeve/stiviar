@@ -1,4 +1,3 @@
-// TodoApp.tsx
 import { useState } from "react";
 import { Button, Card, Input, Label, Spinner, TextField } from "@heroui/react";
 import { addTodo } from "./mutations.ts";
