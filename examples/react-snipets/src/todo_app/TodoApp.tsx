@@ -10,30 +10,15 @@ type Filter = "all" | "active" | "completed";
 export function TodoApp() {
   const [filter, setFilter] = useState<Filter>("all");
   const [newTitle, setNewTitle] = useState("");
-
-  const { data: allTodos, isLoading: isLoadingAll } = useData("todos");
-  const { data: activeTodos, isLoading: isLoadingActive } = useData(
-    "todosByStatus",
-    { completed: false },
-  );
-  const { data: completedTodos, isLoading: isLoadingCompleted } = useData(
-    "todosByStatus",
-    { completed: true },
-  );
-
+  const { data: allTodos, isLoading } = useData("todos");
+  const activeTodos = allTodos.filter((todo) => !todo.completed);
+  const completedTodos = allTodos.filter((todo) => todo.completed);
   const todos =
     filter === "active"
       ? activeTodos
       : filter === "completed"
         ? completedTodos
         : allTodos;
-
-  const isLoading =
-    filter === "active"
-      ? isLoadingActive
-      : filter === "completed"
-        ? isLoadingCompleted
-        : isLoadingAll;
 
   const handleAdd = async () => {
     if (!newTitle.trim()) return;
