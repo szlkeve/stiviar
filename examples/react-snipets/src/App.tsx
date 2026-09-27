@@ -2,7 +2,7 @@ import { Button } from "@heroui/react";
 
 function App() {
   return (
-    <div className="border-red-600 border-2">
+    <div>
       <p>Hello There!</p>
       <Button>Hero Button</Button>
     </div>
