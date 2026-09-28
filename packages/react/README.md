@@ -1,5 +1,10 @@
 # @stiviar/modeled-react
 
+> [!WARNING]
+> **This package is experimental.** The API is unstable and may change at any time, including breaking changes in minor and patch releases. Don't use it in production yet.
+>
+> Suggestions and feedback are very welcome: **sz.l.keve@gmail.com**
+
 A declarative, type-safe API layer for React. Register your API once — as a type, a URL, and a Zod schema — and get a fully typed data-fetching hook with built-in caching and runtime validation.
 
 No codegen, no backend language restrictions, no manual `any` casting between fetch and component. Just describe the shape of what you're calling, and `modeled-react` handles the rest.
@@ -30,7 +35,7 @@ export const api = register<{
 }>({
   todos: {
     url: "https://api.example.com/todos",
-    schema: TodosSchema, // schema is type checked agains the registered type - no mismatch possible
+    schema: TodosSchema, // schema is type checked against the registered type - no mismatch possible
   },
   todo: {
     url: (p) => `https://api.example.com/todos/${p.id}`, // type of p: {id: string}
@@ -97,6 +102,12 @@ export const api = register<TypeModel>(apiModel, {
 ## API
 
 - `useData(key, params?)` — TanStack Query-backed fetch hook for a registered endpoint
+
+## Status & feedback
+
+This project is in an early, experimental stage. Expect API changes, renamed exports, and missing features while it evolves.
+
+Ideas, bug reports, and feedback are appreciated. Email **sz.l.keve@gmail.com**.
 
 ## License
 
